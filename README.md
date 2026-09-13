@@ -1,36 +1,77 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Pouriya Behdarvandan — Portfolio
 
-## Getting Started
+A minimalist portfolio for **Pouriya Behdarvandan**, Cloud & AI Architect.
 
-First, run the development server:
+Built with the Next.js App Router, strict TypeScript, Tailwind CSS v4, and Lucide
+React icons. Fully responsive, accessible, and theme-aware (light/dark toggle
+with system-preference detection and no flash of incorrect theme).
+
+## Tech stack
+
+- **Next.js 16** (App Router, Server Components)
+- **React 19**
+- **TypeScript** (strict mode)
+- **Tailwind CSS v4**
+- **Lucide React**
+- **`next/font`** — Fraunces (display), Geist (body), Geist Mono (labels)
+
+## Getting started
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Command               | Description                              |
+| --------------------- | ---------------------------------------- |
+| `npm run dev`         | Start the development server             |
+| `npm run build`       | Create a production build                |
+| `npm run start`       | Serve the production build               |
+| `npm run lint`        | Lint the project with ESLint             |
+| `npx tsc --noEmit`    | Run strict TypeScript type-checking      |
 
-## Learn More
+## Content
 
-To learn more about Next.js, take a look at the following resources:
+All personal content lives in a single, typed source of truth:
+[`src/lib/data.ts`](src/lib/data.ts) — profile, bio, metrics, expertise, stack,
+experience, and projects. Interfaces are defined in
+[`src/lib/types.ts`](src/lib/types.ts). Update these files to reflect your real
+credentials, employers, and project metrics.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Project structure
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```
+src/
+├── app/
+│   ├── layout.tsx        # Root layout, fonts, metadata, theme script
+│   ├── page.tsx          # Page composition
+│   └── globals.css       # Tailwind theme tokens + base styles
+├── components/
+│   ├── nav.tsx           # Sticky navigation + theme toggle
+│   ├── hero.tsx          # Hero section
+│   ├── metrics.tsx       # Project metrics band
+│   ├── about.tsx         # Bio and quick facts
+│   ├── expertise.tsx     # Services grid
+│   ├── stack.tsx         # Technology stack
+│   ├── experience.tsx    # Work timeline
+│   ├── projects.tsx      # Selected work
+│   ├── contact.tsx       # Contact call-to-action
+│   ├── footer.tsx        # Footer
+│   ├── section.tsx       # Shared section heading
+│   ├── icons.tsx         # GitHub / LinkedIn brand icons
+│   └── theme-toggle.tsx  # Light / dark toggle (client)
+└── lib/
+    ├── types.ts          # TypeScript interfaces
+    └── data.ts           # All personal content
+```
 
-## Deploy on Vercel
+## Deployment
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+The project is ready to deploy to Vercel or any Node.js host that supports
+Next.js. Run `npm run build` followed by `npm run start` to preview a production
+build locally.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
