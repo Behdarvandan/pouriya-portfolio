@@ -1,5 +1,4 @@
 import { profile } from "@/lib/data";
-import { ThemeToggle } from "./theme-toggle";
 
 const links = [
   { href: "#about", label: "About" },
@@ -33,7 +32,6 @@ export function Nav() {
         </nav>
 
         <div className="flex items-center gap-3">
-          <ThemeToggle />
           <a
             href={`mailto:${profile.email}`}
             className="hidden rounded-full border border-edge px-4 py-1.5 font-mono text-xs uppercase tracking-widest text-ink transition-colors hover:border-accent hover:text-accent sm:inline-flex"

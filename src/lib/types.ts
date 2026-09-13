@@ -38,7 +38,7 @@ export interface Project {
   name: string;
   description: string;
   stack: string[];
-  metrics: string[];
+  badge: string;
 }
 
 export interface Profile {

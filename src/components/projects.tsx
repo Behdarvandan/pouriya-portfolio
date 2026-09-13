@@ -9,8 +9,9 @@ export function Projects() {
       <div className="shell py-24 md:py-32">
         <SectionHeading
           number="05"
-          label="Selected Work"
-          title="Projects with measurable impact."
+          label="Case Studies"
+          title="Featured production architectures."
+          description="Four systems running in production, each solving a specific cloud or AI infrastructure problem."
         />
 
         <div className="mt-14 grid gap-px overflow-hidden border border-edge bg-edge md:grid-cols-2">
@@ -41,15 +42,10 @@ export function Projects() {
                     </span>
                   ))}
                 </div>
-                <div className="flex flex-wrap gap-x-5 gap-y-1 border-t border-edge pt-4">
-                  {project.metrics.map((metric) => (
-                    <span
-                      key={metric}
-                      className="font-mono text-xs text-accent"
-                    >
-                      {metric}
-                    </span>
-                  ))}
+                <div className="border-t border-edge pt-4">
+                  <span className="inline-flex items-center rounded-full border border-accent/30 bg-accent/10 px-3 py-1 font-mono text-xs text-accent">
+                    {project.badge}
+                  </span>
                 </div>
               </div>
             </article>

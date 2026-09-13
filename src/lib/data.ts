@@ -24,26 +24,21 @@ export const profile: Profile = {
   name: "Pouriya Behdarvandan",
   firstName: "Pouriya",
   lastName: "Behdarvandan",
-  role: "Cloud & AI Architect",
+  role: "Cloud Infrastructure Architect & Full-Stack AI Engineer",
   tagline:
-    "I design resilient cloud platforms and ship production-grade AI systems — from multi-region infrastructure to LLM-powered products.",
+    "I build event-driven AWS serverless pipelines, containerized cloud platforms, and real-time AI systems that hold up in production.",
   location: "Remote — Worldwide",
   email: "pouriya@behdarvandan.dev",
-  availability: "Available for new engagements",
+  availability: "Available for B2B Contracts & Cloud Roles",
   bio: [
-    "I help teams turn ambitious ideas into dependable systems. As a cloud and AI architect, I work across the full stack of modern infrastructure — multi-region cloud foundations, Kubernetes platforms, data pipelines, and machine-learning systems that survive contact with production.",
-    "My focus sits where engineering rigor meets product velocity: well-architected defaults, observable and cost-aware platforms, and AI that is safe, fast, and genuinely useful. Above all, I care about reducing complexity rather than adding to it.",
+    "I design and ship cloud-native systems end to end — event-driven AWS serverless pipelines, containerized workloads orchestrated on ECS Fargate, and infrastructure defined entirely as code with Terraform.",
+    "On the data and security side, I build multi-tenant platforms with strict row-level security so tenant data never crosses boundaries. On the AI side, I ship retrieval-augmented generation and LLM systems with real-time token streaming, from vector indexing to the client.",
   ],
   socials: [
     {
       label: "GitHub",
       href: "https://github.com/Behdarvandan",
       icon: "github",
-    },
-    {
-      label: "LinkedIn",
-      href: "https://www.linkedin.com/in/pouriya-behdarvandan",
-      icon: "linkedin",
     },
     {
       label: "Email",
@@ -107,24 +102,30 @@ export const expertise: Expertise[] = [
 
 export const stack: SkillGroup[] = [
   {
-    category: "Cloud",
-    items: ["AWS", "Google Cloud", "Azure", "Terraform", "Pulumi", "CloudFormation"],
+    category: "Cloud & DevOps",
+    items: [
+      "AWS Lambda",
+      "AWS S3",
+      "AWS ECS Fargate",
+      "AWS ECR",
+      "Terraform IaC",
+      "Docker (Multi-stage)",
+      "GitHub Actions CI/CD",
+    ],
   },
   {
-    category: "AI & ML",
-    items: ["Python", "PyTorch", "TensorFlow", "LangChain", "LlamaIndex", "Hugging Face"],
+    category: "Core Engineering",
+    items: ["Next.js 15 (App Router)", "TypeScript", "Python", "Tailwind CSS"],
   },
   {
-    category: "Platform",
-    items: ["Kubernetes", "Docker", "Helm", "ArgoCD", "GitHub Actions", "Linux"],
-  },
-  {
-    category: "Data",
-    items: ["PostgreSQL", "Redis", "Kafka", "Snowflake", "dbt", "Airflow"],
-  },
-  {
-    category: "Languages",
-    items: ["TypeScript", "Python", "Go", "SQL", "Bash"],
+    category: "Data & Security",
+    items: [
+      "Supabase (PostgreSQL)",
+      "Multi-Tenant RLS",
+      "pgvector HNSW",
+      "Stripe",
+      "Upstash Redis",
+    ],
   },
 ];
 
@@ -171,31 +172,31 @@ export const experience: ExperienceItem[] = [
 
 export const projects: Project[] = [
   {
-    name: "Multi-Region Cloud Landing Zone",
+    name: "ai-invoice-analyzer",
     description:
-      "A Terraform-driven AWS landing zone with isolated accounts, zero-trust networking, and centralized observability for regulated workloads.",
-    stack: ["Terraform", "AWS", "VPC", "IAM"],
-    metrics: ["3 regions", "-35% infra cost", "99.99% uptime"],
+      "Event-driven PDF document processing microservice that extracts structured data from invoices on upload, with no servers idling between requests.",
+    stack: ["AWS S3", "AWS Lambda", "Groq AI Llama 3.3", "Pydantic"],
+    badge: "$0 Idle Compute Cost • 100% Structured JSON Accuracy",
   },
   {
-    name: "LLM RAG Knowledge Platform",
+    name: "nextjs-cloud-catalog",
     description:
-      "A retrieval-augmented generation system that answers questions over enterprise documentation with citations and guardrails.",
-    stack: ["Python", "LangChain", "PostgreSQL", "OpenAI"],
-    metrics: ["12k documents", "sub-2s latency", "92% answer quality"],
+      "Containerized e-commerce catalog deployed via Terraform IaC on AWS ECS Fargate, with a hardened multi-stage Docker build pipeline.",
+    stack: ["Next.js", "Terraform", "AWS ECS Fargate", "Docker"],
+    badge: "Slashed Docker footprint to ~145MB (85%+ optimization)",
   },
   {
-    name: "Real-time Analytics Pipeline",
+    name: "enterprise-saas-starter",
     description:
-      "A streaming pipeline unifying product events into a governed lakehouse for near-real-time reporting and ML feature generation.",
-    stack: ["Kafka", "dbt", "Snowflake", "Airflow"],
-    metrics: ["1M events/min", "<5 min freshness"],
+      "Production B2B SaaS core with Supabase SSR authentication and tenant-scoped row-level security enforced at the database layer.",
+    stack: ["Next.js", "Supabase", "PostgreSQL RLS", "TypeScript"],
+    badge: "Zero-Cross-Tenant Data Leak Enforcement",
   },
   {
-    name: "MLOps Serving Platform",
+    name: "ai-rag-knowledge-assistant",
     description:
-      "An end-to-end platform for training, versioning, and serving models with GPU auto-scaling and drift monitoring.",
-    stack: ["Kubernetes", "PyTorch", "MLflow", "Grafana"],
-    metrics: ["12 models", "auto-scaling GPU", "24/7 monitoring"],
+      "Multi-tenant, embeddable visitor RAG assistant with Supabase pgvector HNSW indexing for fast semantic retrieval at scale.",
+    stack: ["Supabase pgvector", "HNSW", "LLM Streaming", "TypeScript"],
+    badge: "Millisecond-Level Token Streaming (SSE)",
   },
 ];

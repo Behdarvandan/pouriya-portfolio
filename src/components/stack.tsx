@@ -5,7 +5,11 @@ export function Stack() {
   return (
     <section id="stack" className="scroll-mt-24 border-t border-edge">
       <div className="shell py-24 md:py-32">
-        <SectionHeading number="03" label="Stack" title="Tools I reach for." />
+        <SectionHeading
+          number="03"
+          label="Stack"
+          title="Technical Capabilities & Stack"
+        />
 
         <div className="mt-14 grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
           {stack.map((group) => (

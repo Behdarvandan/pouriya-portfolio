@@ -22,33 +22,33 @@ const fraunces = Fraunces({
   weight: "variable",
 });
 
-// Applied in <head> before hydration to avoid a flash of the wrong theme.
-const themeScript = `(function(){try{var s=localStorage.getItem("theme");var t=s==="light"||s==="dark"?s:(window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");document.documentElement.setAttribute("data-theme",t);}catch(e){document.documentElement.setAttribute("data-theme","light");}})();`;
-
 export const metadata: Metadata = {
-  title: "Pouriya Behdarvandan — Cloud & AI Architect",
+  title: "Pouriya Behdarvandan — Cloud Infrastructure Architect & Full-Stack AI Engineer",
   description:
-    "Portfolio of Pouriya Behdarvandan, a cloud & AI architect designing resilient cloud platforms and shipping production-grade AI systems.",
+    "Portfolio of Pouriya Behdarvandan — AWS serverless pipelines, containerized cloud orchestration on ECS Fargate, multi-tenant RLS data security, and real-time AI/RAG systems.",
   applicationName: "Pouriya Behdarvandan Portfolio",
   authors: [{ name: "Pouriya Behdarvandan" }],
   keywords: [
-    "Cloud Architect",
-    "AI Architect",
-    "Platform Engineering",
-    "DevOps",
-    "Machine Learning",
+    "Cloud Infrastructure Architect",
+    "Full-Stack AI Engineer",
+    "AWS Serverless",
+    "ECS Fargate",
+    "Terraform",
+    "RAG",
     "Portfolio",
   ],
   openGraph: {
-    title: "Pouriya Behdarvandan — Cloud & AI Architect",
-    description: "Resilient cloud platforms and production-grade AI systems.",
+    title: "Pouriya Behdarvandan — Cloud Infrastructure Architect & Full-Stack AI Engineer",
+    description:
+      "AWS serverless pipelines, containerized cloud orchestration, and real-time AI/RAG systems in production.",
     type: "website",
     siteName: "Pouriya Behdarvandan",
   },
   twitter: {
     card: "summary",
-    title: "Pouriya Behdarvandan — Cloud & AI Architect",
-    description: "Resilient cloud platforms and production-grade AI systems.",
+    title: "Pouriya Behdarvandan — Cloud Infrastructure Architect & Full-Stack AI Engineer",
+    description:
+      "AWS serverless pipelines, containerized cloud orchestration, and real-time AI/RAG systems in production.",
   },
 };
 
@@ -56,12 +56,8 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html
       lang="en"
-      suppressHydrationWarning
       className={`${geistSans.variable} ${geistMono.variable} ${fraunces.variable} antialiased`}
     >
-      <head>
-        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
-      </head>
       <body>{children}</body>
     </html>
   );

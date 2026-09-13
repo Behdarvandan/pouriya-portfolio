@@ -19,7 +19,7 @@ export function Hero() {
               <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
             </span>
             <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted">
-              {profile.role} — {profile.availability}
+              {profile.availability}
             </p>
           </div>
 
@@ -30,6 +30,13 @@ export function Hero() {
             <span className="block">{profile.firstName}</span>
             <span className="block">{profile.lastName}</span>
           </h1>
+
+          <p
+            className="animate-rise font-mono text-sm uppercase tracking-widest text-accent sm:text-base"
+            style={{ animationDelay: "120ms" }}
+          >
+            {profile.role}
+          </p>
 
           <p
             className="animate-rise max-w-xl text-lg leading-relaxed text-muted sm:text-xl"
