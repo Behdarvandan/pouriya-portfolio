@@ -21,6 +21,8 @@ export function RotatingText({
 
   useEffect(() => {
     if (phrases.length <= 1) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
     const timer = setInterval(() => {
       setIndex((current) => (current + 1) % phrases.length);
     }, interval);
