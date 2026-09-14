@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import { Fraunces, Geist, Geist_Mono } from "next/font/google";
+
+import { portfolio } from "@/config/portfolio";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -23,32 +25,30 @@ const fraunces = Fraunces({
 });
 
 export const metadata: Metadata = {
-  title: "Pouriya Behdarvandan — Cloud Infrastructure Architect & Full-Stack AI Engineer",
-  description:
-    "Portfolio of Pouriya Behdarvandan — AWS serverless pipelines, containerized cloud orchestration on ECS Fargate, multi-tenant RLS data security, and real-time AI/RAG systems.",
-  applicationName: "Pouriya Behdarvandan Portfolio",
-  authors: [{ name: "Pouriya Behdarvandan" }],
+  title: `${portfolio.name} — ${portfolio.role}`,
+  description: portfolio.summary[0],
+  applicationName: portfolio.name,
+  authors: [{ name: portfolio.name }],
   keywords: [
-    "Cloud Infrastructure Architect",
-    "Full-Stack AI Engineer",
-    "AWS Serverless",
-    "ECS Fargate",
-    "Terraform",
-    "RAG",
-    "Portfolio",
+    portfolio.role,
+    "Frontend Engineer",
+    "Vue.js",
+    "React",
+    "Next.js",
+    "TypeScript",
+    "JavaScript",
+    "Tailwind CSS",
   ],
   openGraph: {
-    title: "Pouriya Behdarvandan — Cloud Infrastructure Architect & Full-Stack AI Engineer",
-    description:
-      "AWS serverless pipelines, containerized cloud orchestration, and real-time AI/RAG systems in production.",
+    title: `${portfolio.name} — ${portfolio.role}`,
+    description: portfolio.summary[0],
     type: "website",
-    siteName: "Pouriya Behdarvandan",
+    siteName: portfolio.name,
   },
   twitter: {
     card: "summary",
-    title: "Pouriya Behdarvandan — Cloud Infrastructure Architect & Full-Stack AI Engineer",
-    description:
-      "AWS serverless pipelines, containerized cloud orchestration, and real-time AI/RAG systems in production.",
+    title: `${portfolio.name} — ${portfolio.role}`,
+    description: portfolio.summary[0],
   },
 };
 
@@ -62,4 +62,3 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     </html>
   );
 }
-

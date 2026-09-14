@@ -1,6 +1,7 @@
 import { ArrowDown, ArrowUpRight } from "lucide-react";
 
-import { profile } from "@/lib/data";
+import { portfolio } from "@/config/portfolio";
+import { RotatingText } from "./rotating-text";
 import { SocialIcon } from "./icons";
 
 export function Hero() {
@@ -15,11 +16,11 @@ export function Hero() {
         <div className="flex max-w-3xl flex-col gap-8">
           <div className="flex animate-rise items-center gap-3">
             <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-blue-400 opacity-75" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-blue-500" />
             </span>
             <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted">
-              {profile.availability}
+              {portfolio.availability}
             </p>
           </div>
 
@@ -27,22 +28,21 @@ export function Hero() {
             className="animate-rise font-display text-5xl font-medium leading-[0.95] tracking-tight text-ink sm:text-7xl md:text-8xl"
             style={{ animationDelay: "80ms" }}
           >
-            <span className="block">{profile.firstName}</span>
-            <span className="block">{profile.lastName}</span>
+            {portfolio.name}
           </h1>
 
           <p
             className="animate-rise font-mono text-sm uppercase tracking-widest text-accent sm:text-base"
             style={{ animationDelay: "120ms" }}
           >
-            {profile.role}
+            {portfolio.role}
           </p>
 
           <p
             className="animate-rise max-w-xl text-lg leading-relaxed text-muted sm:text-xl"
             style={{ animationDelay: "160ms" }}
           >
-            {profile.tagline}
+            <RotatingText phrases={portfolio.taglines} />
           </p>
 
           <div
@@ -68,16 +68,16 @@ export function Hero() {
             className="flex animate-rise items-center gap-6"
             style={{ animationDelay: "320ms" }}
           >
-            {profile.socials.map((social) => (
+            {portfolio.socials.map((social) => (
               <a
-                key={social.label}
+                key={social.title}
                 href={social.href}
                 target={social.icon === "mail" ? undefined : "_blank"}
                 rel={social.icon === "mail" ? undefined : "noopener noreferrer"}
                 className="inline-flex items-center gap-2 text-sm text-muted transition-colors hover:text-ink"
               >
                 <SocialIcon name={social.icon} className="h-4 w-4" />
-                {social.label}
+                {social.title}
               </a>
             ))}
           </div>

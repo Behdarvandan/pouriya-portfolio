@@ -1,10 +1,11 @@
 # Pouriya Behdarvandan — Portfolio
 
-A minimalist portfolio for **Pouriya Behdarvandan**, Cloud & AI Architect.
+A minimalist dark-mode portfolio for **Pouriya Behdarvandan**, Cloud
+Infrastructure Architect & Full-Stack AI Engineer.
 
-Built with the Next.js App Router, strict TypeScript, Tailwind CSS v4, and Lucide
-React icons. Fully responsive, accessible, and theme-aware (light/dark toggle
-with system-preference detection and no flash of incorrect theme).
+Built with the Next.js App Router, strict TypeScript, Tailwind CSS v4, and
+Lucide React icons. Fully responsive, accessible, and server-rendered with a
+single-page, data-driven layout.
 
 ## Tech stack
 
@@ -26,47 +27,44 @@ Open [http://localhost:3000](http://localhost:3000).
 
 ## Scripts
 
-| Command               | Description                              |
-| --------------------- | ---------------------------------------- |
-| `npm run dev`         | Start the development server             |
-| `npm run build`       | Create a production build                |
-| `npm run start`       | Serve the production build               |
-| `npm run lint`        | Lint the project with ESLint             |
-| `npx tsc --noEmit`    | Run strict TypeScript type-checking      |
+| Command            | Description                         |
+| ------------------ | ----------------------------------- |
+| `npm run dev`      | Start the development server        |
+| `npm run build`    | Create a production build           |
+| `npm run start`    | Serve the production build          |
+| `npm run lint`     | Lint the project with ESLint        |
+| `npx tsc --noEmit` | Run strict TypeScript type-checking |
 
 ## Content
 
-All personal content lives in a single, typed source of truth:
-[`src/lib/data.ts`](src/lib/data.ts) — profile, bio, metrics, expertise, stack,
-experience, and projects. Interfaces are defined in
-[`src/lib/types.ts`](src/lib/types.ts). Update these files to reflect your real
-credentials, employers, and project metrics.
+All personal content lives in a single, strictly-typed source of truth:
+[`src/config/portfolio.ts`](src/config/portfolio.ts) — identity, bio, summary,
+social links, contact details, metrics, experience, skills, and projects.
+Update this one file to change any credential, employer, or link.
 
 ## Project structure
 
 ```
 src/
 ├── app/
-│   ├── layout.tsx        # Root layout, fonts, metadata, theme script
+│   ├── layout.tsx        # Root layout, fonts, and metadata
 │   ├── page.tsx          # Page composition
 │   └── globals.css       # Tailwind theme tokens + base styles
 ├── components/
-│   ├── nav.tsx           # Sticky navigation + theme toggle
-│   ├── hero.tsx          # Hero section
-│   ├── metrics.tsx       # Project metrics band
+│   ├── nav.tsx           # Sticky navigation
+│   ├── hero.tsx          # Hero section with rotating tagline
+│   ├── metrics.tsx       # Highlight metrics band
 │   ├── about.tsx         # Bio and quick facts
-│   ├── expertise.tsx     # Services grid
-│   ├── stack.tsx         # Technology stack
 │   ├── experience.tsx    # Work timeline
-│   ├── projects.tsx      # Selected work
-│   ├── contact.tsx       # Contact call-to-action
+│   ├── skills.tsx        # Technology stack
+│   ├── projects.tsx      # Production projects
+│   ├── contact.tsx       # Contact details + social links
 │   ├── footer.tsx        # Footer
 │   ├── section.tsx       # Shared section heading
-│   ├── icons.tsx         # GitHub / LinkedIn brand icons
-│   └── theme-toggle.tsx  # Light / dark toggle (client)
-└── lib/
-    ├── types.ts          # TypeScript interfaces
-    └── data.ts           # All personal content
+│   ├── icons.tsx         # GitHub brand icon
+│   └── rotating-text.tsx # Client tagline rotator
+└── config/
+    └── portfolio.ts      # Types + all personal content
 ```
 
 ## Deployment
@@ -74,4 +72,3 @@ src/
 The project is ready to deploy to Vercel or any Node.js host that supports
 Next.js. Run `npm run build` followed by `npm run start` to preview a production
 build locally.
-

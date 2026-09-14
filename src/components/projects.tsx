@@ -1,6 +1,7 @@
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, ExternalLink } from "lucide-react";
 
-import { projects } from "@/lib/data";
+import { portfolio } from "@/config/portfolio";
+import { GitHubIcon } from "./icons";
 import { SectionHeading } from "./section";
 
 export function Projects() {
@@ -8,22 +9,27 @@ export function Projects() {
     <section id="projects" className="scroll-mt-24 border-t border-edge">
       <div className="shell py-24 md:py-32">
         <SectionHeading
-          number="05"
-          label="Case Studies"
-          title="Featured production architectures."
-          description="Four systems running in production, each solving a specific cloud or AI infrastructure problem."
+          number="04"
+          label="Projects"
+          title="Production architectures."
+          description="Cloud and AI systems shipped to production, each solving a specific infrastructure or data problem."
         />
 
         <div className="mt-14 grid gap-px overflow-hidden border border-edge bg-edge md:grid-cols-2">
-          {projects.map((project) => (
+          {portfolio.projects.map((project) => (
             <article
-              key={project.name}
+              key={project.slug}
               className="group flex flex-col gap-5 bg-canvas p-7 transition-colors hover:bg-panel"
             >
               <div className="flex items-start justify-between gap-4">
-                <h3 className="font-display text-xl font-medium text-ink">
-                  {project.name}
-                </h3>
+                <div className="flex flex-col gap-1">
+                  <h3 className="font-display text-xl font-medium text-ink">
+                    {project.name}
+                  </h3>
+                  <span className="font-mono text-xs text-faint">
+                    {project.slug}
+                  </span>
+                </div>
                 <ArrowUpRight className="h-5 w-5 shrink-0 text-faint transition-colors group-hover:text-accent" />
               </div>
 
@@ -33,7 +39,7 @@ export function Projects() {
 
               <div className="mt-auto flex flex-col gap-4 pt-2">
                 <div className="flex flex-wrap gap-2">
-                  {project.stack.map((tech) => (
+                  {project.technologies.map((tech) => (
                     <span
                       key={tech}
                       className="rounded-md border border-edge px-2 py-1 font-mono text-[11px] text-faint"
@@ -42,11 +48,33 @@ export function Projects() {
                     </span>
                   ))}
                 </div>
-                <div className="border-t border-edge pt-4">
-                  <span className="inline-flex items-center rounded-full border border-accent/30 bg-accent/10 px-3 py-1 font-mono text-xs text-accent">
-                    {project.badge}
-                  </span>
-                </div>
+
+                {project.sourceUrl || project.liveUrl ? (
+                  <div className="flex items-center gap-4 border-t border-edge pt-4">
+                    {project.liveUrl ? (
+                      <a
+                        href={project.liveUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 text-xs font-medium text-accent transition-colors hover:text-ink"
+                      >
+                        <ExternalLink className="h-3.5 w-3.5" />
+                        Live Demo
+                      </a>
+                    ) : null}
+                    {project.sourceUrl ? (
+                      <a
+                        href={project.sourceUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 text-xs font-medium text-muted transition-colors hover:text-ink"
+                      >
+                        <GitHubIcon className="h-3.5 w-3.5" />
+                        Source
+                      </a>
+                    ) : null}
+                  </div>
+                ) : null}
               </div>
             </article>
           ))}

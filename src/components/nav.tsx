@@ -1,9 +1,9 @@
-import { profile } from "@/lib/data";
+import { portfolio } from "@/config/portfolio";
 
 const links = [
   { href: "#about", label: "About" },
-  { href: "#expertise", label: "Expertise" },
   { href: "#experience", label: "Experience" },
+  { href: "#skills", label: "Skills" },
   { href: "#projects", label: "Projects" },
   { href: "#contact", label: "Contact" },
 ];
@@ -16,7 +16,8 @@ export function Nav() {
           href="#top"
           className="font-mono text-sm font-semibold tracking-tight text-ink"
         >
-          PB<span className="text-accent">.</span>
+          {portfolio.initials}
+          <span className="text-accent">.</span>
         </a>
 
         <nav className="hidden items-center gap-7 md:flex" aria-label="Primary">
@@ -31,14 +32,12 @@ export function Nav() {
           ))}
         </nav>
 
-        <div className="flex items-center gap-3">
-          <a
-            href={`mailto:${profile.email}`}
-            className="hidden rounded-full border border-edge px-4 py-1.5 font-mono text-xs uppercase tracking-widest text-ink transition-colors hover:border-accent hover:text-accent sm:inline-flex"
-          >
-            Hire me
-          </a>
-        </div>
+        <a
+          href={`mailto:${portfolio.email}`}
+          className="rounded-full border border-edge px-4 py-1.5 font-mono text-xs uppercase tracking-widest text-ink transition-colors hover:border-accent hover:text-accent"
+        >
+          Contact
+        </a>
       </div>
     </header>
   );

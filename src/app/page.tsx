@@ -2,9 +2,8 @@ import { Nav } from "@/components/nav";
 import { Hero } from "@/components/hero";
 import { Metrics } from "@/components/metrics";
 import { About } from "@/components/about";
-import { Expertise } from "@/components/expertise";
-import { Stack } from "@/components/stack";
 import { Experience } from "@/components/experience";
+import { Skills } from "@/components/skills";
 import { Projects } from "@/components/projects";
 import { Contact } from "@/components/contact";
 import { Footer } from "@/components/footer";
@@ -17,9 +16,8 @@ export default function Home() {
         <Hero />
         <Metrics />
         <About />
-        <Expertise />
-        <Stack />
         <Experience />
+        <Skills />
         <Projects />
         <Contact />
       </main>
@@ -27,4 +25,3 @@ export default function Home() {
     </div>
   );
 }
-

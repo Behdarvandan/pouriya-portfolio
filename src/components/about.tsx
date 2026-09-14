@@ -1,4 +1,4 @@
-import { profile } from "@/lib/data";
+import { portfolio } from "@/config/portfolio";
 import { SectionHeading } from "./section";
 
 export function About() {
@@ -8,11 +8,11 @@ export function About() {
         <SectionHeading
           number="01"
           label="About"
-          title="Systems that stay simple under load."
+          title="Cloud systems that stay simple under load."
         />
 
         <div className="flex flex-col gap-6">
-          {profile.bio.map((paragraph) => (
+          {portfolio.bio.map((paragraph) => (
             <p
               key={paragraph}
               className="text-base leading-relaxed text-muted md:text-lg"
@@ -24,11 +24,25 @@ export function About() {
           <dl className="mt-4 grid gap-4 border-t border-edge pt-6 font-mono text-xs uppercase tracking-widest">
             <div className="flex items-center justify-between gap-4">
               <dt className="text-faint">Location</dt>
-              <dd className="text-right text-ink">{profile.location}</dd>
+              <dd className="text-right text-ink">
+                {portfolio.contact.location}
+              </dd>
             </div>
             <div className="flex items-center justify-between gap-4">
-              <dt className="text-faint">Status</dt>
-              <dd className="text-right text-ink">{profile.availability}</dd>
+              <dt className="text-faint">Timezone</dt>
+              <dd className="text-right text-ink">
+                {portfolio.contact.timezone}
+              </dd>
+            </div>
+            <div className="flex items-center justify-between gap-4">
+              <dt className="text-faint">Availability</dt>
+              <dd className="text-right text-ink">
+                {portfolio.availability}
+              </dd>
+            </div>
+            <div className="flex items-center justify-between gap-4">
+              <dt className="text-faint">Email</dt>
+              <dd className="text-right text-ink">{portfolio.email}</dd>
             </div>
           </dl>
         </div>

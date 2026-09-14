@@ -1,6 +1,6 @@
 import { ArrowUp } from "lucide-react";
 
-import { profile } from "@/lib/data";
+import { portfolio } from "@/config/portfolio";
 
 export function Footer() {
   const year = new Date().getFullYear();
@@ -9,7 +9,7 @@ export function Footer() {
     <footer className="border-t border-edge">
       <div className="shell flex flex-col items-start justify-between gap-6 py-10 sm:flex-row sm:items-center">
         <p className="font-mono text-xs uppercase tracking-widest text-faint">
-          © {year} {profile.name}
+          © {year} {portfolio.name}
         </p>
         <p className="text-xs text-faint">
           Built with Next.js, TypeScript &amp; Tailwind CSS.
