@@ -1,4 +1,5 @@
 import { ArrowUpRight } from "lucide-react";
+import Link from "next/link";
 
 import { portfolio } from "@/config/portfolio";
 import { GitHubIcon } from "./icons";
@@ -55,15 +56,38 @@ export function Projects() {
                   </span>
                 </div>
 
-                <a
-                  href={project.sourceUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-xs font-medium text-muted transition-colors hover:text-ink"
-                >
-                  <GitHubIcon className="h-3.5 w-3.5" />
-                  View source
-                </a>
+                <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
+                  <a
+                    href={project.sourceUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 text-xs font-medium text-muted transition-colors hover:text-ink"
+                  >
+                    <GitHubIcon className="h-3.5 w-3.5" />
+                    View source
+                  </a>
+
+                  {project.liveUrl ? (
+                    <a
+                      href={project.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-xs font-medium text-muted transition-colors hover:text-ink"
+                    >
+                      <ArrowUpRight className="h-3.5 w-3.5" />
+                      Live demo
+                    </a>
+                  ) : null}
+
+                  {project.caseStudySlug ? (
+                    <Link
+                      href={`/work/${project.caseStudySlug}`}
+                      className="inline-flex items-center gap-1.5 text-xs font-medium text-muted transition-colors hover:text-ink"
+                    >
+                      Case study →
+                    </Link>
+                  ) : null}
+                </div>
               </div>
             </article>
           ))}

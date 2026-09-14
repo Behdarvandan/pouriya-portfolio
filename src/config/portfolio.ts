@@ -40,6 +40,8 @@ export interface Project {
   badge: string;
   technologies: string[];
   sourceUrl: string;
+  liveUrl?: string;
+  caseStudySlug?: string;
 }
 
 export interface ContactInfo {
@@ -184,6 +186,8 @@ export const portfolio: Portfolio = {
       badge: "Zero-Cross-Tenant Data Leak Enforcement",
       technologies: ["Next.js 15", "TypeScript", "Supabase RLS", "Stripe", "Playwright", "Sentry"],
       sourceUrl: "https://github.com/Behdarvandan/enterprise-saas-starter",
+      liveUrl: "https://enterprise-saas-starter.vercel.app",
+      caseStudySlug: "enterprise-saas-starter",
     },
     {
       name: "Event-Driven AI Document Intelligence Microservice",
