@@ -8,34 +8,26 @@ export function Skills() {
         <SectionHeading
           number="03"
           label="Skills"
-          title="Technical toolkit."
-          description="A technology map built across years of shipping frontend products."
+          title="Technical capabilities."
+          description="A full-stack view across cloud, frontend, security, and AI."
         />
 
-        <div className="mt-14 grid gap-12 lg:grid-cols-2">
-          {portfolio.skills.map((section) => (
-            <div key={section.section} className="flex flex-col gap-8">
+        <div className="mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+          {portfolio.skills.map((category) => (
+            <div key={category.category} className="flex flex-col gap-4">
               <h3 className="font-mono text-xs uppercase tracking-[0.2em] text-accent">
-                {section.section}
+                {category.category}
               </h3>
-
-              {section.categories.map((category) => (
-                <div key={category.category} className="flex flex-col gap-3">
-                  <h4 className="text-sm font-medium text-ink">
-                    {category.category}
-                  </h4>
-                  <ul className="flex flex-wrap gap-2">
-                    {category.items.map((item) => (
-                      <li
-                        key={item}
-                        className="rounded-full border border-edge px-3 py-1.5 font-mono text-xs text-muted transition-colors hover:border-accent/50 hover:text-ink"
-                      >
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
+              <ul className="flex flex-wrap gap-2">
+                {category.items.map((item) => (
+                  <li
+                    key={item}
+                    className="rounded-full border border-edge px-3 py-1.5 font-mono text-xs text-muted transition-colors hover:border-accent/50 hover:text-ink"
+                  >
+                    {item}
+                  </li>
+                ))}
+              </ul>
             </div>
           ))}
         </div>

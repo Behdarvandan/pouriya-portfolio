@@ -1,14 +1,14 @@
 @import "tailwindcss";
 
 :root {
-  --canvas: #18181b;
-  --panel: #1f2937;
-  --edge: #2d333b;
-  --ink: #f1f5f9;
-  --muted: #a1a1aa;
-  --faint: #71717a;
-  --accent: #3b82f6;
-  --on-accent: #f8fafc;
+  --canvas: #0a0a0a;
+  --panel: #171717;
+  --edge: #262626;
+  --ink: #f5f5f5;
+  --muted: #a3a3a3;
+  --faint: #737373;
+  --accent: #10b981;
+  --on-accent: #022c22;
   color-scheme: dark;
 }
 

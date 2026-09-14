@@ -16,8 +16,8 @@ export function Hero() {
         <div className="flex max-w-3xl flex-col gap-8">
           <div className="flex animate-rise items-center gap-3">
             <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-blue-400 opacity-75" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-blue-500" />
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
             </span>
             <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted">
               {portfolio.availability}

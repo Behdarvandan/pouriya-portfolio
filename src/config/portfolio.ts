@@ -33,18 +33,13 @@ export interface SkillCategory {
   items: string[];
 }
 
-export interface SkillSection {
-  section: string;
-  categories: SkillCategory[];
-}
-
 export interface Project {
   name: string;
   slug: string;
   description: string;
+  badge: string;
   technologies: string[];
-  sourceUrl?: string;
-  liveUrl?: string;
+  sourceUrl: string;
 }
 
 export interface ContactInfo {
@@ -66,7 +61,7 @@ export interface Portfolio {
   contact: ContactInfo;
   metrics: Metric[];
   experience: ExperienceItem[];
-  skills: SkillSection[];
+  skills: SkillCategory[];
   projects: Project[];
 }
 
@@ -75,23 +70,23 @@ export const portfolio: Portfolio = {
   initials: "PB",
   role: "Cloud Infrastructure Architect & Full-Stack AI Engineer",
   taglines: [
-    "I build event-driven AWS serverless pipelines, containerized cloud platforms, and real-time AI systems that hold up in production.",
-    "Shipping cloud-native infrastructure that scales without idle cost.",
+    "I build resilient AWS serverless pipelines, containerized cloud applications, and streaming AI microservices that hold up in production.",
     "Enforcing zero-cross-tenant data isolation with strict Row-Level Security.",
-    "Turning LLMs and retrieval-augmented generation into production reality.",
+    "Shipping multi-tenant SaaS cores with Stripe billing and observability baked in.",
+    "Turning retrieval-augmented generation and LLM streaming into production reality.",
   ],
-  availability: "Open for Global Remote Contracts & European Roles",
+  availability: "Open for B2B Contracts & Global Roles",
   email: "pouriya@behdarvandan.dev",
 
   bio: [
-    "I design and ship cloud-native systems end to end — event-driven AWS serverless pipelines, containerized workloads orchestrated on ECS Fargate, and infrastructure defined entirely as code with Terraform.",
-    "On the data and security side, I build multi-tenant platforms with strict row-level security so tenant data never crosses boundaries. On the AI side, I ship retrieval-augmented generation and LLM systems with real-time token streaming, from vector indexing to the client.",
+    "I design and ship resilient cloud-native systems end to end — event-driven AWS serverless pipelines, containerized applications orchestrated on ECS Fargate, and infrastructure defined entirely as code with Terraform.",
+    "On the data and security side, I build multi-tenant platforms with strict row-level security so tenant data never crosses boundaries. On the AI side, I ship streaming AI microservices — retrieval-augmented generation and LLM systems with real-time token streaming, from vector indexing to the client.",
   ],
 
   summary: [
-    "Cloud Infrastructure Architect and Full-Stack AI Engineer with 6+ years of experience designing, shipping, and operating cloud-native systems end to end.",
-    "I specialize in event-driven AWS serverless pipelines, containerized workloads on ECS Fargate, and infrastructure defined entirely as code with Terraform.",
-    "Proven across multi-tenant data security with strict Row-Level Security and retrieval-augmented generation systems with real-time token streaming.",
+    "Cloud Infrastructure Architect and Full-Stack AI Engineer with 6+ years of experience designing, shipping, and operating resilient cloud-native systems end to end.",
+    "I specialize in event-driven AWS serverless pipelines, containerized applications on ECS Fargate, and infrastructure defined entirely as code with Terraform.",
+    "Proven across multi-tenant data security with strict Row-Level Security and streaming AI microservices with real-time token streaming.",
   ],
 
   socials: [
@@ -111,15 +106,15 @@ export const portfolio: Portfolio = {
 
   contact: {
     email: "pouriya@behdarvandan.dev",
-    location: "Antalya, Turkey",
+    location: "Ankara, Turkey",
     timezone: "UTC+3",
   },
 
   metrics: [
     { value: "6+", label: "Years in web development" },
-    { value: "85%+", label: "Docker image size reduction" },
-    { value: "$0", label: "Idle cloud compute cost" },
-    { value: "100%", label: "Row-level security tenant isolation" },
+    { value: "85%+", label: "Docker footprint reduction" },
+    { value: "$0", label: "Idle cloud architecture costs" },
+    { value: "100%", label: "RLS tenant data isolation" },
   ],
 
   experience: [
@@ -163,53 +158,58 @@ export const portfolio: Portfolio = {
 
   skills: [
     {
-      section: "Cloud & Infrastructure",
-      categories: [
-        { category: "AWS", items: ["ECS Fargate", "Lambda", "S3", "ECR"] },
-        { category: "Infrastructure as Code", items: ["Terraform", "Docker"] },
-      ],
+      category: "Cloud & DevOps",
+      items: ["AWS ECS", "AWS Lambda", "AWS S3", "Terraform", "Docker", "CI/CD"],
     },
     {
-      section: "Engineering",
-      categories: [
-        { category: "Languages & Frameworks", items: ["Next.js 15", "TypeScript", "Python"] },
-        { category: "Data & Security", items: ["Supabase", "Row-Level Security", "pgvector"] },
-        { category: "AI & LLM", items: ["Groq AI", "RAG", "SSE Streaming"] },
-      ],
+      category: "Frontend & Core",
+      items: ["Next.js 15", "TypeScript", "Tailwind CSS"],
+    },
+    {
+      category: "Backend & Security",
+      items: ["Supabase", "Multi-tenant RLS", "Stripe API", "Upstash Redis"],
+    },
+    {
+      category: "AI Integrations",
+      items: ["Groq AI", "OpenAI Embeddings", "Pydantic", "pgvector HNSW"],
     },
   ],
 
   projects: [
     {
-      name: "Enterprise Multi-Tenant SaaS Engine",
+      name: "Enterprise Multi-Tenant SaaS Core & Booking Engine",
       slug: "enterprise-saas-starter",
       description:
-        "Production B2B SaaS core with Supabase SSR authentication and tenant-scoped row-level security enforced at the database layer.",
-      technologies: ["Next.js 15", "Supabase SSR Auth", "PostgreSQL RLS", "Stripe", "Resend", "Playwright", "Sentry"],
+        "Production-ready B2B SaaS boilerplate featuring Next.js 15 App Router, Supabase SSR Auth, tenant-scoped Row-Level Security (RLS), Stripe billing, Resend email workflows, Playwright E2E, and Sentry observability.",
+      badge: "Zero-Cross-Tenant Data Leak Enforcement",
+      technologies: ["Next.js 15", "TypeScript", "Supabase RLS", "Stripe", "Playwright", "Sentry"],
       sourceUrl: "https://github.com/Behdarvandan/enterprise-saas-starter",
     },
     {
-      name: "Event-Driven AI Document Intelligence",
+      name: "Event-Driven AI Document Intelligence Microservice",
       slug: "ai-invoice-analyzer",
       description:
-        "Event-driven PDF document processing microservice that extracts structured data from invoices on upload, with no servers idling between requests.",
-      technologies: ["AWS S3", "AWS Lambda", "Groq AI", "Llama 3.3", "Pydantic"],
+        "Serverless PDF invoice parsing pipeline on AWS S3 & Lambda utilizing Groq AI (Llama 3.3) and Pydantic structured JSON validation with zero idle compute costs.",
+      badge: "$0 Idle Compute Cost • 100% JSON Accuracy",
+      technologies: ["AWS S3", "AWS Lambda", "Docker", "Python", "Groq AI", "Pydantic"],
       sourceUrl: "https://github.com/Behdarvandan/ai-invoice-analyzer",
     },
     {
-      name: "Cloud-Native Standalone Catalog Engine",
+      name: "Standalone Containerized Cloud Catalog Engine",
       slug: "nextjs-cloud-catalog",
       description:
-        "Containerized e-commerce catalog deployed via Terraform IaC on AWS ECS Fargate, with a hardened multi-stage Docker build pipeline.",
-      technologies: ["Next.js 15", "Docker", "Terraform", "AWS ECS Fargate"],
+        "E-commerce product catalog optimized with Next.js 15 standalone Docker builds, deployed on AWS ECS Fargate via Terraform Infrastructure as Code (IaC).",
+      badge: "Slashed Docker footprint to ~145MB (85%+ optimization)",
+      technologies: ["Next.js 15", "Docker Standalone", "AWS ECS Fargate", "Terraform", "AWS ECR"],
       sourceUrl: "https://github.com/Behdarvandan/nextjs-cloud-catalog",
     },
     {
-      name: "Multi-Tenant Vector RAG Assistant",
+      name: "Multi-Tenant Vector RAG Knowledge Base Engine",
       slug: "ai-rag-knowledge-assistant",
       description:
-        "Multi-tenant, embeddable visitor RAG assistant with Supabase pgvector HNSW indexing for fast semantic retrieval at scale.",
-      technologies: ["Supabase pgvector", "HNSW", "Groq AI", "Llama 3.3", "SSE Streaming"],
+        "Embeddable visitor RAG assistant backed by Supabase pgvector HNSW indexing for real-time cosine similarity search and SSE token streaming.",
+      badge: "Millisecond-Level Token Streaming (SSE)",
+      technologies: ["pgvector", "HNSW Index", "Web Streams", "OpenAI", "Groq AI"],
       sourceUrl: "https://github.com/Behdarvandan/ai-rag-knowledge-assistant",
     },
   ],

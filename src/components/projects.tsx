@@ -1,4 +1,4 @@
-import { ArrowUpRight, ExternalLink } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 
 import { portfolio } from "@/config/portfolio";
 import { GitHubIcon } from "./icons";
@@ -12,7 +12,7 @@ export function Projects() {
           number="04"
           label="Projects"
           title="Production architectures."
-          description="Cloud and AI systems shipped to production, each solving a specific infrastructure or data problem."
+          description="Four cloud and AI systems shipped to production, each solving a specific infrastructure or data problem."
         />
 
         <div className="mt-14 grid gap-px overflow-hidden border border-edge bg-edge md:grid-cols-2">
@@ -49,32 +49,21 @@ export function Projects() {
                   ))}
                 </div>
 
-                {project.sourceUrl || project.liveUrl ? (
-                  <div className="flex items-center gap-4 border-t border-edge pt-4">
-                    {project.liveUrl ? (
-                      <a
-                        href={project.liveUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 text-xs font-medium text-accent transition-colors hover:text-ink"
-                      >
-                        <ExternalLink className="h-3.5 w-3.5" />
-                        Live Demo
-                      </a>
-                    ) : null}
-                    {project.sourceUrl ? (
-                      <a
-                        href={project.sourceUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 text-xs font-medium text-muted transition-colors hover:text-ink"
-                      >
-                        <GitHubIcon className="h-3.5 w-3.5" />
-                        Source
-                      </a>
-                    ) : null}
-                  </div>
-                ) : null}
+                <div className="border-t border-edge pt-4">
+                  <span className="inline-flex items-center rounded-full border border-accent/30 bg-accent/10 px-3 py-1 font-mono text-xs text-accent">
+                    {project.badge}
+                  </span>
+                </div>
+
+                <a
+                  href={project.sourceUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 text-xs font-medium text-muted transition-colors hover:text-ink"
+                >
+                  <GitHubIcon className="h-3.5 w-3.5" />
+                  View source
+                </a>
               </div>
             </article>
           ))}
