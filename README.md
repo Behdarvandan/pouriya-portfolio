@@ -27,13 +27,13 @@ Open [http://localhost:3000](http://localhost:3000).
 
 ## Scripts
 
-| Command            | Description                         |
-| ------------------ | ------------------------------------ |
-| `npm run dev`      | Start the development server        |
-| `npm run build`    | Create a production build           |
-| `npm run start`    | Serve the production build          |
-| `npm run lint`     | Lint the project with ESLint        |
-| `npx tsc --noEmit` | Run strict TypeScript type-checking |
+| Command              | Description                                             |
+| -------------------- | -------------------------------------------------------- |
+| `npm run dev`        | Start the development server                            |
+| `npm run build`      | Create a production build                                |
+| `npm run start`      | Serve the production build                               |
+| `npm run lint`       | Lint the project with ESLint                             |
+| `npm run typecheck`  | Generate route types, then run strict TypeScript checking |
 
 CI (`.github/workflows/ci.yml`) runs `lint`, `tsc --noEmit`, and `build` on
 every push and pull request against `main`.
