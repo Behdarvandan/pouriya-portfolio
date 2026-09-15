@@ -6,7 +6,11 @@
     "skills": "Fähigkeiten",
     "projects": "Projekte",
     "contact": "Kontakt",
-    "contactButton": "Kontakt"
+    "contactButton": "Kontakt",
+    "resume": "Lebenslauf",
+    "openMenu": "Menü öffnen",
+    "closeMenu": "Menü schließen",
+    "menuLabel": "Menü"
   },
   "A11y": {
     "skipToContent": "Zum Inhalt springen"
@@ -60,6 +64,15 @@
   "Footer": {
     "backToTop": "Nach oben",
     "builtWith": "Erstellt mit Next.js, TypeScript & Tailwind CSS."
+  },
+  "Resume": {
+    "eyebrow": "Lebenslauf",
+    "title": "Ein strukturierter Überblick über die Arbeit.",
+    "summaryLabel": "Zusammenfassung",
+    "experienceLabel": "Erfahrung",
+    "skillsLabel": "Fähigkeiten",
+    "educationLabel": "Ausbildung",
+    "placeholderNote": "Platzhalterinhalt — der vollständige Lebenslauf folgt in einer späteren Phase."
   },
   "LocaleSwitcher": {
     "label": "Sprache",

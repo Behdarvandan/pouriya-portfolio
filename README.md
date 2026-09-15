@@ -144,11 +144,13 @@ There are currently no images in the site. If one is added, use `next/image`
 - `prefers-reduced-motion: reduce` is respected both in CSS (`globals.css`)
   and in JavaScript (the hero's `RotatingText` component stops rotating).
 - Heading hierarchy (`h1` → `h2` → `h3`) is consistent across every page.
-- **Known trade-off:** the primary nav's text links are hidden below the
-  `md` breakpoint with no hamburger/alternate menu (only the logo and
-  "Contact" button remain) — a deliberate scroll-first design for a
-  single-page mobile experience, not an oversight. Revisit if the site grows
-  beyond a single scrollable page.
+- Below the `md` breakpoint, the primary nav's text links collapse into a
+  hamburger-triggered slide-in panel (`components/motion/mobile-nav.tsx`,
+  Faz 6.2) rather than disappearing outright — full focus trap, `Escape`
+  to close, `aria-expanded`/`aria-controls`, and focus returns to the
+  trigger button on close. The panel opens from the CSS logical `end` edge
+  (`end-0`/`border-s`), which resolves to the physical left under `fa`'s
+  `dir="rtl"` instead of the right.
 
 ## Internationalization (i18n)
 
@@ -195,6 +197,42 @@ from the locale-routing proxy's matcher (`src/proxy.ts`).
   falls back to the English availability/role strings for `fa` specifically
   so the share-card image renders at all instead of 500ing. The rest of the
   `fa` site is unaffected — this is scoped to the OG image renderer only.
+
+## Faz 5.1: Translation Review
+
+Every `de`/`tr`/`fa` string introduced in Faz 5 is an AI-translated draft
+(flagged with a `$comment` in each `src/messages/*.json` file, and in the
+doc comment at the top of `src/config/portfolio.ts`) and needs a
+native-speaker pass before being considered final. This is the checklist
+for that pass — work through it file by file rather than trying to review
+everything in one sitting:
+
+- [ ] `src/messages/de.json` — every value except the `$comment` key
+- [ ] `src/messages/tr.json` — every value except the `$comment` key
+- [ ] `src/messages/fa.json` — every value except the `$comment` key (also
+      check that phrasing reads naturally right-to-left, not just that the
+      words are correct)
+- [ ] `src/config/portfolio.ts`, the `de`/`tr`/`fa` keys of each
+      `LocalizedString` field:
+  - [ ] `role`
+  - [ ] `taglines` (4 entries)
+  - [ ] `availability`
+  - [ ] `bio` (2 paragraphs)
+  - [ ] `summary` (3 sentences)
+  - [ ] `metrics[].label` (4 entries)
+  - [ ] `experience[].role`, `.summary`, and `.highlights` — for all 3
+        `experience` entries
+  - [ ] `skills[].category` (4 entries)
+  - [ ] `projects[].description` and `.badge` — for all 4 `projects` entries
+
+Once a file/field group has been reviewed and corrected, remove its
+`$comment` (messages files) or update the portfolio.ts doc comment to
+reflect what's still outstanding — don't leave the draft notice in place
+after the content underneath it has actually been reviewed.
+
+`src/content/case-studies.ts` is out of scope here — it's English-only by
+design (see [Internationalization](#internationalization-i18n)) and was
+never translated.
 
 ## SEO
 

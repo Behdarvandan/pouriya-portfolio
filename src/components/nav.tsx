@@ -2,6 +2,8 @@ import { getTranslations } from "next-intl/server";
 
 import { portfolio } from "@/config/portfolio";
 import { NavContactLink } from "./motion/nav-contact-link";
+import { MobileNav } from "./motion/mobile-nav";
+import { ResumeNavLink } from "./resume-nav-link";
 import { LocaleSwitcher } from "./locale-switcher";
 
 const links = [
@@ -36,9 +38,25 @@ export async function Nav() {
               {t(link.key)}
             </a>
           ))}
+          <ResumeNavLink
+            href="/resume"
+            className="font-mono text-xs uppercase tracking-widest"
+          >
+            {t("resume")}
+          </ResumeNavLink>
         </nav>
 
         <div className="flex items-center gap-4">
+          <MobileNav
+            links={links.map((link) => ({ ...link, label: t(link.key) }))}
+            resumeHref="/resume"
+            resumeLabel={t("resume")}
+            contactHref={`mailto:${portfolio.email}`}
+            contactLabel={t("contactButton")}
+            openLabel={t("openMenu")}
+            closeLabel={t("closeMenu")}
+            menuLabel={t("menuLabel")}
+          />
           <LocaleSwitcher />
           <NavContactLink href={`mailto:${portfolio.email}`}>
             {t("contactButton")}

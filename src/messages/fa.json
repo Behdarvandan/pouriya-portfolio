@@ -6,7 +6,11 @@
     "skills": "مهارت‌ها",
     "projects": "پروژه‌ها",
     "contact": "تماس",
-    "contactButton": "تماس"
+    "contactButton": "تماس",
+    "resume": "رزومه",
+    "openMenu": "باز کردن منو",
+    "closeMenu": "بستن منو",
+    "menuLabel": "منو"
   },
   "A11y": {
     "skipToContent": "رفتن به محتوا"
@@ -60,6 +64,15 @@
   "Footer": {
     "backToTop": "بازگشت به بالا",
     "builtWith": "ساخته‌شده با Next.js، TypeScript و Tailwind CSS."
+  },
+  "Resume": {
+    "eyebrow": "رزومه",
+    "title": "نگاهی ساختاریافته به سوابق کاری.",
+    "summaryLabel": "خلاصه",
+    "experienceLabel": "سوابق کاری",
+    "skillsLabel": "مهارت‌ها",
+    "educationLabel": "تحصیلات",
+    "placeholderNote": "محتوای موقت — رزومه کامل در فاز بعدی اضافه می‌شود."
   },
   "LocaleSwitcher": {
     "label": "زبان",

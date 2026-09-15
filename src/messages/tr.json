@@ -6,7 +6,11 @@
     "skills": "Yetenekler",
     "projects": "Projeler",
     "contact": "İletişim",
-    "contactButton": "İletişim"
+    "contactButton": "İletişim",
+    "resume": "Özgeçmiş",
+    "openMenu": "Menüyü aç",
+    "closeMenu": "Menüyü kapat",
+    "menuLabel": "Menü"
   },
   "A11y": {
     "skipToContent": "İçeriğe geç"
@@ -60,6 +64,15 @@
   "Footer": {
     "backToTop": "Başa dön",
     "builtWith": "Next.js, TypeScript ve Tailwind CSS ile geliştirildi."
+  },
+  "Resume": {
+    "eyebrow": "Özgeçmiş",
+    "title": "Çalışmalara yapılandırılmış bir bakış.",
+    "summaryLabel": "Özet",
+    "experienceLabel": "Deneyim",
+    "skillsLabel": "Yetenekler",
+    "educationLabel": "Eğitim",
+    "placeholderNote": "Yer tutucu içerik — tam özgeçmiş sonraki bir aşamada eklenecek."
   },
   "LocaleSwitcher": {
     "label": "Dil",

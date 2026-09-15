@@ -5,7 +5,11 @@
     "skills": "Skills",
     "projects": "Projects",
     "contact": "Contact",
-    "contactButton": "Contact"
+    "contactButton": "Contact",
+    "resume": "Resume",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "menuLabel": "Menu"
   },
   "A11y": {
     "skipToContent": "Skip to content"
@@ -59,6 +63,15 @@
   "Footer": {
     "backToTop": "Back to top",
     "builtWith": "Built with Next.js, TypeScript & Tailwind CSS."
+  },
+  "Resume": {
+    "eyebrow": "Résumé",
+    "title": "A structured look at the work.",
+    "summaryLabel": "Summary",
+    "experienceLabel": "Experience",
+    "skillsLabel": "Skills",
+    "educationLabel": "Education",
+    "placeholderNote": "Placeholder content — the full résumé lands in a later phase."
   },
   "LocaleSwitcher": {
     "label": "Language",
