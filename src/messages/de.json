@@ -18,6 +18,10 @@
   "Hero": {
     "scrollDown": "Nach unten scrollen"
   },
+  "PhotoReveal": {
+    "eyebrow": "Hinter dem Code",
+    "caption": "Ein näherer Blick — das echte Foto und der Text für diesen Abschnitt sind noch in Arbeit."
+  },
   "Sections": {
     "about": {
       "label": "Über mich",

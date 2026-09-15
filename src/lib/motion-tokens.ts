@@ -1,7 +1,17 @@
 import { useReducedMotion } from "framer-motion";
+import { cubicBezier } from "motion-utils";
 
 /** Apple-style "confident but not bouncy" ease-out-expo variant. */
 export const EASE_PRECISE = [0.22, 1, 0.36, 1] as const;
+
+/**
+ * EASE_PRECISE resolved to a JS easing function. Framer Motion's
+ * declarative `transition.ease` (e.g. motion-provider.tsx) accepts the raw
+ * bezier tuple directly, but useTransform's imperative `options.ease` only
+ * accepts an EasingFunction — this is that form, for scroll-linked
+ * consumers (see motion/photo-reveal-motion.tsx).
+ */
+export const EASE_PRECISE_FN = cubicBezier(...EASE_PRECISE);
 
 /** Micro-interactions: hover states, small toggles. */
 export const DURATION_FAST = 0.22;

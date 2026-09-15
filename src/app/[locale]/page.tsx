@@ -2,6 +2,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 
 import { Nav } from "@/components/nav";
 import { Hero } from "@/components/hero";
+import { PhotoReveal } from "@/components/photo-reveal";
 import { Metrics } from "@/components/metrics";
 import { About } from "@/components/about";
 import { Experience } from "@/components/experience";
@@ -28,6 +29,7 @@ export default async function Home({
       <Nav />
       <main id="main-content" className="flex-1">
         <Hero />
+        <PhotoReveal />
         <Metrics />
         <About />
         <Experience />

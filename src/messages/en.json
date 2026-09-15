@@ -17,6 +17,10 @@
   "Hero": {
     "scrollDown": "Scroll down"
   },
+  "PhotoReveal": {
+    "eyebrow": "Behind the code",
+    "caption": "A closer look — this section's real photo and copy are still being designed."
+  },
   "Sections": {
     "about": {
       "label": "About",

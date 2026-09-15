@@ -219,6 +219,20 @@
   );
 }
 
+/* Faz 6.5: the photo-reveal section's counterpart to .hero-focus-glow above
+   — same --accent radial-gradient language, centered on this section's
+   centered photo (not hero's off-center block) and a higher ceiling (10%
+   vs. 4%) since this section's whole job is the dramatic reveal. Opacity is
+   driven by scroll progress in motion/photo-reveal-motion.tsx rather than
+   static on load. */
+.photo-reveal-glow {
+  background: radial-gradient(
+    ellipse 60% 55% at 50% 50%,
+    color-mix(in srgb, var(--accent) 10%, transparent),
+    transparent 72%
+  );
+}
+
 @media (min-width: 640px) {
   .shell {
     padding-inline: 2rem;
