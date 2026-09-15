@@ -26,7 +26,14 @@
      ~1.4 editorial ratio (wider than a musical major-third) so headline
      sizes read as deliberately oversized rather than incrementally bigger.
      Tokens only — nothing below consumes them yet. */
-  --text-display: clamp(4rem, 2.42rem + 6.33vw, 8.75rem); /* 64px -> 140px */
+  /* --text-display's reference range is wider than the rest (400-2800, not
+     400-1600): applying it in Faz 6.3 against the hero's actual name showed
+     the original 1600px reference reaching ~93% of 140px already at an
+     ordinary 1440px laptop width, leaving a two-column layout no room for a
+     long surname. Widening the reference keeps the same 64px/140px
+     endpoints but reaches them more gradually, so typical desktop widths
+     land well under the ceiling. */
+  --text-display: clamp(4rem, 3.21rem + 3.17vw, 8.75rem); /* 64px -> 140px */
   --text-h1: clamp(2.75rem, 2.33rem + 1.67vw, 4rem); /* 44px -> 64px */
   --text-h2: clamp(2rem, 1.75rem + 1vw, 2.75rem); /* 32px -> 44px */
   --text-h3: clamp(1.5rem, 1.375rem + 0.5vw, 1.875rem); /* 24px -> 30px */
@@ -58,6 +65,19 @@
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, monospace;
   --font-display: var(--font-fraunces), ui-serif, Georgia, serif;
+
+  /* Faz 6.3: expose the Faz 6.1 type-scale tokens as Tailwind font-size
+     utilities (text-display, text-h1, ...) so components can consume them
+     directly instead of reaching for arbitrary values everywhere. */
+  --text-display: var(--text-display);
+  --text-h1: var(--text-h1);
+  --text-h2: var(--text-h2);
+  --text-h3: var(--text-h3);
+  --text-body-lg: var(--text-body-lg);
+  --text-body: var(--text-body);
+  --text-body-sm: var(--text-body-sm);
+  --text-label: var(--text-label);
+  --tracking-label: var(--tracking-label);
 }
 
 @layer base {
