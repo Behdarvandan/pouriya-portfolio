@@ -26,14 +26,17 @@
      ~1.4 editorial ratio (wider than a musical major-third) so headline
      sizes read as deliberately oversized rather than incrementally bigger.
      Tokens only — nothing below consumes them yet. */
-  /* --text-display's reference range is wider than the rest (400-2800, not
-     400-1600): applying it in Faz 6.3 against the hero's actual name showed
-     the original 1600px reference reaching ~93% of 140px already at an
-     ordinary 1440px laptop width, leaving a two-column layout no room for a
-     long surname. Widening the reference keeps the same 64px/140px
-     endpoints but reaches them more gradually, so typical desktop widths
-     land well under the ceiling. */
-  --text-display: clamp(4rem, 3.21rem + 3.17vw, 8.75rem); /* 64px -> 140px */
+  /* --text-display's reference range is wider than the rest (400-6000, not
+     400-1600). Faz 6.3 hit two overflow rounds against the hero's actual
+     (unbreakable) surname: 1600px reached ~93% of 140px already at an
+     ordinary 1440px laptop width, and a first widening to 2800px still left
+     only single-digit-percent margin there. This range keeps the same
+     64px/140px endpoints but reaches them far more gradually, landing at
+     ~78px at the 1440px reference — a ~15% width margin under the longest
+     word at hero.tsx's current grid proportions (verified empirically, not
+     just computed, since font metrics vary by browser/OS). Revisit the
+     margin if the grid ratio in hero.tsx changes. */
+  --text-display: clamp(4rem, 3.6607rem + 1.3571vw, 8.75rem); /* 64px -> 140px */
   --text-h1: clamp(2.75rem, 2.33rem + 1.67vw, 4rem); /* 44px -> 64px */
   --text-h2: clamp(2rem, 1.75rem + 1vw, 2.75rem); /* 32px -> 44px */
   --text-h3: clamp(1.5rem, 1.375rem + 0.5vw, 1.875rem); /* 24px -> 30px */

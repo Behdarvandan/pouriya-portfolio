@@ -28,7 +28,7 @@ export async function Hero() {
         aria-hidden="true"
       />
 
-      <HeroRevealGroup className="shell relative grid min-h-[calc(100vh-4rem)] grid-cols-1 items-center gap-16 py-24 lg:grid-cols-[1.3fr_0.7fr] lg:gap-12">
+      <HeroRevealGroup className="shell relative grid min-h-[calc(100vh-4rem)] grid-cols-1 items-center gap-16 py-24 lg:grid-cols-[1.15fr_0.85fr] lg:items-stretch lg:gap-12">
         <div className="flex min-w-0 flex-col gap-8">
           <HeroRevealItem className="flex items-center gap-3">
             <span className="relative flex h-2 w-2">
@@ -51,7 +51,7 @@ export async function Hero() {
           </HeroRevealItem>
 
           <HeroRevealItem>
-            <h1 className="break-words font-display text-display font-medium leading-[0.95] tracking-tight text-ink">
+            <h1 className="text-balance font-display text-display font-medium leading-[0.95] tracking-tight text-ink [overflow-wrap:normal]">
               {portfolio.name}
             </h1>
           </HeroRevealItem>
@@ -96,14 +96,17 @@ export async function Hero() {
           </HeroRevealItem>
         </div>
 
-        <HeroRevealItem
-          slow
-          className="w-full max-w-sm justify-self-center lg:max-w-none lg:justify-self-end"
-        >
+        <HeroRevealItem slow className="justify-self-center lg:justify-self-end">
           {/* Portrait slot: fixed 4:5 aspect ratio so the layout holds once a
               real photo lands here — swap in an <Image> filling this
-              <figure> and nothing around it needs to change. */}
-          <figure className="relative aspect-[4/5] w-full overflow-hidden rounded-3xl border border-edge bg-panel">
+              <figure> and nothing around it needs to change.
+              Mobile (stacked): width-driven, aspect-ratio sets the height.
+              lg (side-by-side, row is lg:items-stretch): height-driven
+              instead — h-full matches the text column's own height (the
+              row's height, since it's taller), width is derived from that
+              via the same 4:5 ratio, so the photo fills the row instead of
+              leaving dead space below a shorter, width-driven box. */}
+          <figure className="relative aspect-[4/5] w-full max-w-sm overflow-hidden rounded-3xl border border-edge bg-panel lg:h-full lg:w-auto lg:max-w-full">
             <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 text-faint">
               <ImageIcon className="h-10 w-10" strokeWidth={1.25} aria-hidden="true" />
               <span className="font-mono text-label uppercase tracking-label">
