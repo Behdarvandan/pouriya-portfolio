@@ -79,5 +79,9 @@
     "de": "Deutsch",
     "tr": "Türkçe",
     "fa": "فارسی"
+  },
+  "ThemeToggle": {
+    "switchToLight": "Switch to light theme",
+    "switchToDark": "Switch to dark theme"
   }
 }

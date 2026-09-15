@@ -16,6 +16,7 @@ import { Menu, X } from "lucide-react";
 import { rtlLocales, type Locale } from "@/i18n/routing";
 import { useMotionTokens } from "@/lib/motion-tokens";
 import { ResumeNavLink } from "@/components/resume-nav-link";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 const FOCUSABLE_SELECTOR =
   'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])';
@@ -181,7 +182,8 @@ export function MobileNav({
                     exit={{ x: isRtl ? "-100%" : "100%" }}
                     transition={{ duration: base, ease }}
                   >
-                    <div className="flex items-center justify-end">
+                    <div className="flex items-center justify-between">
+                      <ThemeToggle />
                       <button
                         type="button"
                         aria-label={closeLabel}

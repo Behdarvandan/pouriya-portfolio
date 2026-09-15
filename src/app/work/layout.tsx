@@ -3,12 +3,16 @@ import type { ReactNode } from "react";
 
 import { SITE_URL } from "@/config/site";
 import { fontClassNames } from "@/lib/fonts";
+import { THEME_INIT_SCRIPT } from "@/lib/theme-script";
 import { SiteShell } from "@/components/site-shell";
 import "../globals.css";
 
 export const viewport: Viewport = {
-  themeColor: "#0a0a0a",
-  colorScheme: "dark",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#fafaf9" },
+    { media: "(prefers-color-scheme: dark)", color: "#0a0a0a" },
+  ],
+  colorScheme: "light dark",
 };
 
 // work/[slug]/page.tsx sets a relative alternates.canonical, which needs a
@@ -25,7 +29,16 @@ export const metadata: Metadata = {
 // rendering the wrong locale.
 export default function WorkLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en" dir="ltr" className={fontClassNames("en")}>
+    <html
+      lang="en"
+      dir="ltr"
+      className={fontClassNames("en")}
+      data-theme="dark"
+      suppressHydrationWarning
+    >
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
+      </head>
       <body>
         <SiteShell skipToContentLabel="Skip to content">
           {children}

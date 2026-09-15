@@ -54,6 +54,37 @@
   --space-section-sm: clamp(6rem, 5.08rem + 3.67vw, 8.75rem); /* 96px -> 140px */
 }
 
+/* ---- Light theme (Faz 6.3, theming) ----
+   :root above stays the dark palette (the site's long-standing default);
+   this is the only override block, applied via [data-theme="light"] set by
+   THEME_INIT_SCRIPT (src/lib/theme-script.ts) before first paint. Same
+   --accent/--accent-warm hues as dark (brand identity), retuned in
+   lightness for AA contrast on a light ground. Every pair below is verified
+   via the WCAG relative-luminance formula against BOTH --canvas and
+   --panel (not just one), same bar the dark palette was audited to:
+     ink          16.47:1 canvas / 14.96:1 panel
+     muted         7.30:1 canvas /  6.63:1 panel
+     faint         5.50:1 canvas /  5.00:1 panel
+     accent        7.36:1 canvas /  6.68:1 panel  (on-accent vs accent: 7.36:1)
+     accent-warm   6.79:1 canvas /  6.17:1 panel
+   all clear 4.5:1 (AA, normal text) with real margin — faint-on-panel is
+   the tightest at 5.00:1, still comfortably above the floor. */
+[data-theme="light"] {
+  --canvas: #fafaf9;
+  --panel: #f0efec;
+  --edge: #e2e0dc;
+  --ink: #1c1b1a;
+  --muted: #57534e;
+  --faint: #6b6560;
+  /* Same emerald/amber hues as dark, several stops darker (800, not 500)
+     so they read as AA-safe text on a light ground, not just as button
+     fills — see the contrast table above. */
+  --accent: #065f46;
+  --on-accent: #fafaf9;
+  --accent-warm: #92400e;
+  color-scheme: light;
+}
+
 @theme inline {
   --color-canvas: var(--canvas);
   --color-panel: var(--panel);
@@ -176,6 +207,24 @@
 @media (min-width: 640px) {
   .shell {
     padding-inline: 2rem;
+  }
+}
+
+/* Theme-switch crossfade (Faz 6.3): every element re-painting when a color
+   token changes value eases instead of jumping. Gated on no-preference
+   (rather than defined-then-cancelled under reduce) so reduced-motion users
+   get no color transition at all, full stop — DURATION_FAST/EASE_PRECISE
+   from motion-tokens.ts, mirrored here since this is plain CSS, not a
+   framer-motion component. Elements with their own `transition-colors`
+   utility (e.g. link hovers) keep that shorter, unrelated timing — this
+   only fills in surfaces that don't already declare one. */
+@media (prefers-reduced-motion: no-preference) {
+  *,
+  ::before,
+  ::after {
+    transition-property: background-color, border-color, color, fill, stroke;
+    transition-duration: 0.22s;
+    transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
   }
 }
 

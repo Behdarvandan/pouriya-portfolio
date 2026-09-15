@@ -8,6 +8,7 @@ import { portfolio } from "@/config/portfolio";
 import { SITE_URL } from "@/config/site";
 import { fontClassNames } from "@/lib/fonts";
 import { getDirection, routing, type Locale } from "@/i18n/routing";
+import { THEME_INIT_SCRIPT } from "@/lib/theme-script";
 import { SiteShell } from "@/components/site-shell";
 import "../globals.css";
 
@@ -16,8 +17,11 @@ export function generateStaticParams() {
 }
 
 export const viewport: Viewport = {
-  themeColor: "#0a0a0a",
-  colorScheme: "dark",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#fafaf9" },
+    { media: "(prefers-color-scheme: dark)", color: "#0a0a0a" },
+  ],
+  colorScheme: "light dark",
 };
 
 export async function generateMetadata({
@@ -96,7 +100,12 @@ export default async function LocaleLayout({
       lang={locale}
       dir={getDirection(locale as Locale)}
       className={fontClassNames(locale as Locale)}
+      data-theme="dark"
+      suppressHydrationWarning
     >
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
+      </head>
       <body>
         <NextIntlClientProvider messages={messages}>
           <SiteShell skipToContentLabel={t("skipToContent")}>

@@ -80,5 +80,9 @@
     "de": "Deutsch",
     "tr": "Türkçe",
     "fa": "فارسی"
+  },
+  "ThemeToggle": {
+    "switchToLight": "تغییر به تم روشن",
+    "switchToDark": "تغییر به تم تیره"
   }
 }

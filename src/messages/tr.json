@@ -80,5 +80,9 @@
     "de": "Deutsch",
     "tr": "Türkçe",
     "fa": "فارسی"
+  },
+  "ThemeToggle": {
+    "switchToLight": "Açık temaya geç",
+    "switchToDark": "Koyu temaya geç"
   }
 }

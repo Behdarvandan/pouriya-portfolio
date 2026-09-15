@@ -80,5 +80,9 @@
     "de": "Deutsch",
     "tr": "Türkçe",
     "fa": "فارسی"
+  },
+  "ThemeToggle": {
+    "switchToLight": "Zum hellen Design wechseln",
+    "switchToDark": "Zum dunklen Design wechseln"
   }
 }

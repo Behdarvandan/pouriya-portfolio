@@ -5,6 +5,7 @@ import { NavContactLink } from "./motion/nav-contact-link";
 import { MobileNav } from "./motion/mobile-nav";
 import { ResumeNavLink } from "./resume-nav-link";
 import { LocaleSwitcher } from "./locale-switcher";
+import { ThemeToggle } from "./theme-toggle";
 
 const links = [
   { href: "#about", key: "about" },
@@ -57,6 +58,7 @@ export async function Nav() {
             closeLabel={t("closeMenu")}
             menuLabel={t("menuLabel")}
           />
+          <ThemeToggle />
           <LocaleSwitcher />
           <NavContactLink href={`mailto:${portfolio.email}`}>
             {t("contactButton")}
