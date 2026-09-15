@@ -86,7 +86,14 @@ export function CaseStudyBody({ study }: { study: CaseStudy }) {
                 paragraph.kind === "point" ? (
                   <p
                     key={`${section.heading}-${index}`}
-                    className="text-base leading-relaxed text-muted"
+                    className={
+                      // Faz 4: single warm-accent callout, closest to an
+                      // architectural trade-off — flagged via the content
+                      // model's `highlight` field, not a text match.
+                      paragraph.highlight
+                        ? "border-l-2 border-accent-warm pl-4 text-base leading-relaxed text-muted"
+                        : "text-base leading-relaxed text-muted"
+                    }
                   >
                     <span className="font-medium text-ink">{paragraph.lead}</span>{" "}
                     {paragraph.body}

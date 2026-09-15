@@ -1,9 +1,13 @@
 import { portfolio } from "@/config/portfolio";
 import { SectionHeading } from "./section";
+import { RevealGroup, RevealItem } from "./motion/reveal";
 
 export function Experience() {
   return (
-    <section id="experience" className="scroll-mt-24 border-t border-edge">
+    <section
+      id="experience"
+      className="scroll-mt-24 border-t border-edge bg-panel"
+    >
       <div className="shell py-24 md:py-32">
         <SectionHeading
           number="02"
@@ -11,10 +15,11 @@ export function Experience() {
           title="A track record of shipping."
         />
 
-        <ol className="mt-14">
+        <RevealGroup as="ol" className="mt-14">
           {portfolio.experience.map((item) => (
-            <li
+            <RevealItem
               key={`${item.role}-${item.period}`}
+              as="li"
               className="grid gap-4 border-t border-edge py-8 last:border-b md:grid-cols-[200px_1fr] md:gap-8"
             >
               <div className="flex flex-col gap-1">
@@ -51,9 +56,9 @@ export function Experience() {
                   ))}
                 </ul>
               </div>
-            </li>
+            </RevealItem>
           ))}
-        </ol>
+        </RevealGroup>
       </div>
     </section>
   );

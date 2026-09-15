@@ -3,18 +3,32 @@ import { ArrowDown, ArrowUpRight } from "lucide-react";
 import { portfolio } from "@/config/portfolio";
 import { RotatingText } from "./rotating-text";
 import { SocialIcon } from "./icons";
+import { RevealGroup, RevealItem } from "./motion/reveal";
 
 export function Hero() {
   return (
     <section id="top" className="relative overflow-hidden">
       <div
+        className="blueprint-grid pointer-events-none absolute inset-0"
+        aria-hidden="true"
+      />
+      <div
         className="glow-accent pointer-events-none absolute inset-x-0 top-0 h-[560px] opacity-80"
         aria-hidden="true"
       />
+      {/* Faz 4: static two-accent wash, additive to the Faz 3 layers above —
+          visible on first paint, independent of any hover/scroll motion. */}
+      <div
+        className="duotone-wash pointer-events-none absolute inset-0"
+        aria-hidden="true"
+      />
 
-      <div className="shell relative flex min-h-[calc(100vh-4rem)] flex-col justify-center py-24">
+      <RevealGroup
+        as="div"
+        className="shell relative flex min-h-[calc(100vh-4rem)] flex-col justify-center py-24"
+      >
         <div className="flex max-w-3xl flex-col gap-8">
-          <div className="flex animate-rise items-center gap-3">
+          <RevealItem as="div" className="flex items-center gap-3">
             <span className="relative flex h-2 w-2">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
               <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
@@ -22,33 +36,27 @@ export function Hero() {
             <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted">
               {portfolio.availability}
             </p>
-          </div>
+          </RevealItem>
 
-          <h1
-            className="animate-rise font-display text-5xl font-medium leading-[0.95] tracking-tight text-ink sm:text-7xl md:text-8xl"
-            style={{ animationDelay: "80ms" }}
-          >
-            {portfolio.name}
-          </h1>
+          <RevealItem as="div">
+            <h1 className="font-display text-5xl font-medium leading-[0.95] tracking-tight text-ink sm:text-7xl md:text-8xl">
+              {portfolio.name}
+            </h1>
+          </RevealItem>
 
-          <p
-            className="animate-rise font-mono text-sm uppercase tracking-widest text-accent sm:text-base"
-            style={{ animationDelay: "120ms" }}
-          >
-            {portfolio.role}
-          </p>
+          <RevealItem as="div">
+            <p className="font-mono text-sm uppercase tracking-widest text-accent sm:text-base">
+              {portfolio.role}
+            </p>
+          </RevealItem>
 
-          <p
-            className="animate-rise max-w-xl text-lg leading-relaxed text-muted sm:text-xl"
-            style={{ animationDelay: "160ms" }}
-          >
-            <RotatingText phrases={portfolio.taglines} />
-          </p>
+          <RevealItem as="div">
+            <p className="max-w-xl text-lg leading-relaxed text-muted sm:text-xl">
+              <RotatingText phrases={portfolio.taglines} />
+            </p>
+          </RevealItem>
 
-          <div
-            className="flex animate-rise flex-wrap items-center gap-4"
-            style={{ animationDelay: "240ms" }}
-          >
+          <RevealItem as="div" className="flex flex-wrap items-center gap-4">
             <a
               href="#projects"
               className="group inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3 text-sm font-medium text-on-accent transition-transform hover:-translate-y-0.5"
@@ -62,12 +70,9 @@ export function Hero() {
             >
               Get in touch
             </a>
-          </div>
+          </RevealItem>
 
-          <div
-            className="flex animate-rise items-center gap-6"
-            style={{ animationDelay: "320ms" }}
-          >
+          <RevealItem as="div" className="flex items-center gap-6">
             {portfolio.socials.map((social) => (
               <a
                 key={social.title}
@@ -80,7 +85,7 @@ export function Hero() {
                 {social.title}
               </a>
             ))}
-          </div>
+          </RevealItem>
         </div>
 
         <a
@@ -93,7 +98,7 @@ export function Hero() {
           </span>
           <ArrowDown className="h-4 w-4 animate-bounce" />
         </a>
-      </div>
+      </RevealGroup>
     </section>
   );
 }

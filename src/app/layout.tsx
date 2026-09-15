@@ -6,6 +6,7 @@ import { portfolio } from "@/config/portfolio";
 import { SITE_URL } from "@/config/site";
 import { JsonLd } from "@/components/json-ld";
 import { personJsonLd } from "@/lib/json-ld";
+import { MotionProvider } from "@/components/motion/motion-provider";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -75,7 +76,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           Skip to content
         </a>
         <JsonLd data={personJsonLd()} />
-        {children}
+        <MotionProvider>{children}</MotionProvider>
       </body>
     </html>
   );

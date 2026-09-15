@@ -9,6 +9,11 @@
   --faint: #7a7a7a;
   --accent: #10b981;
   --on-accent: #022c22;
+  /* Second accent for the duotone identity (Faz 4). Amber-500: contrast vs.
+     --canvas is 9.2:1 and vs. --panel is 8.35:1 (WCAG relative-luminance
+     formula), clearing AA for normal text (4.5:1) and UI components (3:1)
+     with a wide margin in either surface. */
+  --accent-warm: #f59e0b;
   color-scheme: dark;
 }
 
@@ -21,25 +26,11 @@
   --color-faint: var(--faint);
   --color-accent: var(--accent);
   --color-on-accent: var(--on-accent);
+  --color-accent-warm: var(--accent-warm);
 
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, monospace;
   --font-display: var(--font-fraunces), ui-serif, Georgia, serif;
-}
-
-@theme {
-  --animate-rise: rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
-
-  @keyframes rise {
-    from {
-      opacity: 0;
-      transform: translateY(16px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
 }
 
 @layer base {
@@ -83,6 +74,46 @@
     color-mix(in srgb, var(--accent) 20%, transparent),
     transparent
   );
+}
+
+/* Engineering-grid texture for the hero, built from repeating gradients so
+   no image asset is needed. Faded top-to-bottom with a mask so it reads as
+   backdrop, not decoration competing with the copy. */
+.blueprint-grid {
+  background-image:
+    repeating-linear-gradient(
+      color-mix(in srgb, var(--accent) 7%, transparent) 0 1px,
+      transparent 1px 40px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      color-mix(in srgb, var(--accent) 7%, transparent) 0 1px,
+      transparent 1px 40px
+    );
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black 45%, transparent 100%);
+  -webkit-mask-image: radial-gradient(
+    ellipse 80% 60% at 50% 0%,
+    black 45%,
+    transparent 100%
+  );
+}
+
+/* Static duotone identity wash (Faz 4) — paints on first load, no hover or
+   scroll needed, so the two-accent palette reads immediately rather than
+   only once Faz 3's interactive motion kicks in. Layers alongside, not on
+   top of, blueprint-grid/glow-accent above without changing either. */
+.duotone-wash {
+  background:
+    radial-gradient(
+      ellipse 50% 40% at 18% 12%,
+      color-mix(in srgb, var(--accent) 16%, transparent),
+      transparent 70%
+    ),
+    radial-gradient(
+      ellipse 45% 38% at 84% 78%,
+      color-mix(in srgb, var(--accent-warm) 14%, transparent),
+      transparent 70%
+    );
 }
 
 @media (min-width: 640px) {

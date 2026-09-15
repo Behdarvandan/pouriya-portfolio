@@ -12,7 +12,7 @@ export interface CaseStudyLink {
 
 export type CaseStudyParagraph =
   | { kind: "text"; body: string }
-  | { kind: "point"; lead: string; body: string };
+  | { kind: "point"; lead: string; body: string; highlight?: boolean };
 
 export interface CaseStudySection {
   heading: string;
@@ -85,6 +85,7 @@ export const caseStudies: CaseStudy[] = [
             kind: "point",
             lead: "A single dependency could take the whole API down.",
             body: "The rate limiter hard-crashed three API endpoints outright whenever Redis was unreachable — and it turned out the Upstash Redis credentials had never actually been provisioned in production. Rewrote the limiter to fail open (pass requests through instead of throwing a 500 when Redis is down), provisioned real credentials, and confirmed genuine 429 responses under load. Both the failure mode and the fix were tested, not assumed.",
+            highlight: true,
           },
         ],
       },

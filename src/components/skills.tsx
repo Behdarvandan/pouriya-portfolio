@@ -1,9 +1,13 @@
 import { portfolio } from "@/config/portfolio";
 import { SectionHeading } from "./section";
+import { RevealGroup, RevealItem } from "./motion/reveal";
 
 export function Skills() {
   return (
-    <section id="skills" className="scroll-mt-24 border-t border-edge">
+    <section
+      id="skills"
+      className="scroll-mt-24 border-t border-edge bg-canvas"
+    >
       <div className="shell py-24 md:py-32">
         <SectionHeading
           number="03"
@@ -12,9 +16,16 @@ export function Skills() {
           description="A full-stack view across cloud, frontend, security, and AI."
         />
 
-        <div className="mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+        <RevealGroup
+          as="div"
+          className="mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-4"
+        >
           {portfolio.skills.map((category) => (
-            <div key={category.category} className="flex flex-col gap-4">
+            <RevealItem
+              key={category.category}
+              as="div"
+              className="flex flex-col gap-4"
+            >
               <h3 className="font-mono text-xs uppercase tracking-[0.2em] text-accent">
                 {category.category}
               </h3>
@@ -28,9 +39,9 @@ export function Skills() {
                   </li>
                 ))}
               </ul>
-            </div>
+            </RevealItem>
           ))}
-        </div>
+        </RevealGroup>
       </div>
     </section>
   );

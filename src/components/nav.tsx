@@ -1,4 +1,5 @@
 import { portfolio } from "@/config/portfolio";
+import { NavContactLink } from "./motion/nav-contact-link";
 
 const links = [
   { href: "#about", label: "About" },
@@ -32,12 +33,9 @@ export function Nav() {
           ))}
         </nav>
 
-        <a
-          href={`mailto:${portfolio.email}`}
-          className="rounded-full border border-edge px-4 py-1.5 font-mono text-xs uppercase tracking-widest text-ink transition-colors hover:border-accent hover:text-accent"
-        >
+        <NavContactLink href={`mailto:${portfolio.email}`}>
           Contact
-        </a>
+        </NavContactLink>
       </div>
     </header>
   );
