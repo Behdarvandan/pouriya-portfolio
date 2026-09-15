@@ -1,16 +1,8 @@
 {
   "$comment": "AI-translated draft, needs native review before considered final.",
   "Nav": {
-    "about": "Über mich",
-    "experience": "Erfahrung",
-    "skills": "Fähigkeiten",
-    "projects": "Projekte",
-    "contact": "Kontakt",
-    "contactButton": "Kontakt",
-    "resume": "Lebenslauf",
-    "openMenu": "Menü öffnen",
-    "closeMenu": "Menü schließen",
-    "menuLabel": "Menü"
+    "home": "Start",
+    "resume": "Lebenslauf"
   },
   "A11y": {
     "skipToContent": "Zum Inhalt springen"

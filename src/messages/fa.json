@@ -1,16 +1,8 @@
 {
   "$comment": "AI-translated draft, needs native review before considered final.",
   "Nav": {
-    "about": "درباره من",
-    "experience": "سوابق کاری",
-    "skills": "مهارت‌ها",
-    "projects": "پروژه‌ها",
-    "contact": "تماس",
-    "contactButton": "تماس",
-    "resume": "رزومه",
-    "openMenu": "باز کردن منو",
-    "closeMenu": "بستن منو",
-    "menuLabel": "منو"
+    "home": "خانه",
+    "resume": "رزومه"
   },
   "A11y": {
     "skipToContent": "رفتن به محتوا"

@@ -1,15 +1,7 @@
 {
   "Nav": {
-    "about": "About",
-    "experience": "Experience",
-    "skills": "Skills",
-    "projects": "Projects",
-    "contact": "Contact",
-    "contactButton": "Contact",
-    "resume": "Resume",
-    "openMenu": "Open menu",
-    "closeMenu": "Close menu",
-    "menuLabel": "Menu"
+    "home": "Home",
+    "resume": "Resume"
   },
   "A11y": {
     "skipToContent": "Skip to content"

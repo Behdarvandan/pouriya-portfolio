@@ -1,16 +1,8 @@
 {
   "$comment": "AI-translated draft, needs native review before considered final.",
   "Nav": {
-    "about": "Hakkımda",
-    "experience": "Deneyim",
-    "skills": "Yetenekler",
-    "projects": "Projeler",
-    "contact": "İletişim",
-    "contactButton": "İletişim",
-    "resume": "Özgeçmiş",
-    "openMenu": "Menüyü aç",
-    "closeMenu": "Menüyü kapat",
-    "menuLabel": "Menü"
+    "home": "Ana Sayfa",
+    "resume": "Özgeçmiş"
   },
   "A11y": {
     "skipToContent": "İçeriğe geç"

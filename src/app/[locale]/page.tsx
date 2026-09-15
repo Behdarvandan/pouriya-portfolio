@@ -1,6 +1,7 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
 
 import { Nav } from "@/components/nav";
+import { ScrollDots } from "@/components/scroll-dots";
 import { Hero } from "@/components/hero";
 import { PhotoReveal } from "@/components/photo-reveal";
 import { Metrics } from "@/components/metrics";
@@ -27,6 +28,7 @@ export default async function Home({
   return (
     <div className="flex min-h-screen flex-col">
       <Nav />
+      <ScrollDots />
       <main id="main-content" className="flex-1">
         <Hero />
         <PhotoReveal />

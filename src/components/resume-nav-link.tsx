@@ -29,7 +29,7 @@ export function ResumeNavLink({
       onClick={onClick}
       aria-current={isActive ? "page" : undefined}
       className={`${className} transition-colors ${
-        isActive ? "text-ink" : "text-muted hover:text-ink"
+        isActive ? "font-semibold text-ink" : "text-muted hover:text-ink"
       }`}
     >
       {children}
