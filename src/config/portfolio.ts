@@ -36,9 +36,29 @@ export interface ExperienceItem {
   highlights: LocalizedString[];
 }
 
+export type SkillCategoryId =
+  | "frontend"
+  | "backend-data"
+  | "ai-ml"
+  | "cloud-platform"
+  | "infra-devops";
+
 export interface SkillCategory {
+  id: SkillCategoryId;
   category: LocalizedString;
   items: string[];
+}
+
+/**
+ * Faz 6.9: two top-level groups ("Development" / "Tools") replace the old
+ * flat 4-category list — see skills.tsx and skill-icons.tsx, which key off
+ * `id` (not the localized `label`) to pick each group's accent color and
+ * each category's icon.
+ */
+export interface SkillGroup {
+  id: "development" | "tools";
+  label: LocalizedString;
+  categories: SkillCategory[];
 }
 
 export interface Project {
@@ -71,7 +91,7 @@ export interface Portfolio {
   contact: ContactInfo;
   metrics: Metric[];
   experience: ExperienceItem[];
-  skills: SkillCategory[];
+  skills: SkillGroup[];
   projects: Project[];
 }
 
@@ -327,40 +347,76 @@ export const portfolio: Portfolio = {
 
   skills: [
     {
-      category: {
-        en: "Cloud & DevOps",
-        de: "Cloud & DevOps",
-        tr: "Bulut ve DevOps",
-        fa: "ابر و DevOps",
+      id: "development",
+      label: {
+        en: "Development",
+        de: "Entwicklung",
+        tr: "Geliştirme",
+        fa: "توسعه",
       },
-      items: ["AWS ECS", "AWS Lambda", "AWS S3", "Terraform", "Docker", "CI/CD"],
+      categories: [
+        {
+          id: "frontend",
+          category: {
+            en: "Frontend",
+            de: "Frontend",
+            tr: "Frontend",
+            fa: "فرانت‌اند",
+          },
+          items: ["Next.js 15", "TypeScript", "Tailwind CSS"],
+        },
+        {
+          id: "backend-data",
+          category: {
+            en: "Backend & Data",
+            de: "Backend & Daten",
+            tr: "Backend ve Veri",
+            fa: "بک‌اند و داده",
+          },
+          items: ["Supabase", "Multi-tenant RLS", "Stripe API", "Upstash Redis"],
+        },
+        {
+          id: "ai-ml",
+          category: {
+            en: "AI & ML",
+            de: "KI & ML",
+            tr: "Yapay Zeka ve ML",
+            fa: "هوش مصنوعی و ML",
+          },
+          items: ["Groq AI", "OpenAI Embeddings", "Pydantic", "pgvector HNSW"],
+        },
+      ],
     },
     {
-      category: {
-        en: "Frontend & Core",
-        de: "Frontend & Kernkompetenzen",
-        tr: "Frontend ve Temel",
-        fa: "فرانت‌اند و هسته",
+      id: "tools",
+      label: {
+        en: "Tools",
+        de: "Werkzeuge",
+        tr: "Araçlar",
+        fa: "ابزارها",
       },
-      items: ["Next.js 15", "TypeScript", "Tailwind CSS"],
-    },
-    {
-      category: {
-        en: "Backend & Security",
-        de: "Backend & Sicherheit",
-        tr: "Backend ve Güvenlik",
-        fa: "بک‌اند و امنیت",
-      },
-      items: ["Supabase", "Multi-tenant RLS", "Stripe API", "Upstash Redis"],
-    },
-    {
-      category: {
-        en: "AI Integrations",
-        de: "KI-Integrationen",
-        tr: "Yapay Zeka Entegrasyonları",
-        fa: "یکپارچه‌سازی‌های هوش مصنوعی",
-      },
-      items: ["Groq AI", "OpenAI Embeddings", "Pydantic", "pgvector HNSW"],
+      categories: [
+        {
+          id: "cloud-platform",
+          category: {
+            en: "Cloud Platform",
+            de: "Cloud-Plattform",
+            tr: "Bulut Platformu",
+            fa: "پلتفرم ابری",
+          },
+          items: ["AWS ECS", "AWS Lambda", "AWS S3"],
+        },
+        {
+          id: "infra-devops",
+          category: {
+            en: "Infrastructure & DevOps",
+            de: "Infrastruktur & DevOps",
+            tr: "Altyapı ve DevOps",
+            fa: "زیرساخت و DevOps",
+          },
+          items: ["Terraform", "Docker", "CI/CD"],
+        },
+      ],
     },
   ],
 
