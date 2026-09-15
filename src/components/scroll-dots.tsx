@@ -6,7 +6,6 @@ import { useTranslations } from "next-intl";
 
 const SECTION_IDS = [
   "top",
-  "photo-reveal",
   "about",
   "experience",
   "skills",
@@ -34,7 +33,6 @@ export function ScrollDots() {
   const [activeId, setActiveId] = useState<SectionId>("top");
 
   const tNav = useTranslations("Nav");
-  const tPhoto = useTranslations("PhotoReveal");
   const tAbout = useTranslations("Sections.about");
   const tExperience = useTranslations("Sections.experience");
   const tSkills = useTranslations("Sections.skills");
@@ -43,7 +41,6 @@ export function ScrollDots() {
 
   const labels: Record<SectionId, string> = {
     top: tNav("home"),
-    "photo-reveal": tPhoto("eyebrow"),
     about: tAbout("label"),
     experience: tExperience("label"),
     skills: tSkills("label"),

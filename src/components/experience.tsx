@@ -12,7 +12,7 @@ export async function Experience() {
   return (
     <section
       id="experience"
-      className="scroll-mt-24 border-t border-edge bg-panel"
+      className="scroll-mt-24 flex min-h-screen flex-col justify-center border-t border-edge bg-panel"
     >
       <div className="shell py-24 md:py-32">
         <SectionHeading

@@ -3,7 +3,6 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Nav } from "@/components/nav";
 import { ScrollDots } from "@/components/scroll-dots";
 import { Hero } from "@/components/hero";
-import { PhotoReveal } from "@/components/photo-reveal";
 import { About } from "@/components/about";
 import { Experience } from "@/components/experience";
 import { Skills } from "@/components/skills";
@@ -50,7 +49,6 @@ export default async function Home({
       <ScrollDots />
       <main id="main-content" className="flex-1">
         <Hero />
-        <PhotoReveal />
         <About />
         <Experience />
         <Skills />

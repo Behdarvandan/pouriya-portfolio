@@ -12,7 +12,7 @@ export async function Skills() {
   return (
     <section
       id="skills"
-      className="scroll-mt-24 border-t border-edge bg-canvas"
+      className="scroll-mt-24 flex min-h-screen flex-col justify-center border-t border-edge bg-canvas"
     >
       <div className="shell py-24 md:py-32">
         <SectionHeading

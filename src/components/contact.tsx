@@ -23,7 +23,7 @@ export async function Contact() {
   return (
     <section
       id="contact"
-      className="scroll-mt-24 border-t border-edge bg-panel"
+      className="scroll-mt-24 flex min-h-screen flex-col justify-center border-t border-edge bg-panel"
     >
       <RevealGroup
         as="div"

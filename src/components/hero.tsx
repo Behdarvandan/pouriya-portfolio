@@ -30,7 +30,7 @@ export async function Hero() {
         aria-hidden="true"
       />
 
-      <HeroRevealGroup className="shell relative grid min-h-[calc(100vh-4rem)] grid-cols-1 items-center gap-12 py-24 pb-[10vh] sm:pb-[14vh] lg:grid-cols-[1.15fr_0.85fr] lg:items-stretch">
+      <HeroRevealGroup className="shell relative grid min-h-screen grid-cols-1 items-center gap-12 py-24 pb-[10vh] sm:pb-[14vh] lg:grid-cols-[1.15fr_0.85fr] lg:items-stretch">
         <div className="flex max-w-xl flex-col gap-6">
           <HeroRevealItem>
             {/* Icon-signature: the ssamilg.dev reference's mark above the
@@ -72,7 +72,7 @@ export async function Hero() {
         </HeroRevealItem>
 
         <HeroScrollIndicator
-          href="#photo-reveal"
+          href="#about"
           label={t("scrollDown")}
           className="absolute bottom-8 left-1/2 hidden -translate-x-1/2 md:flex"
         />

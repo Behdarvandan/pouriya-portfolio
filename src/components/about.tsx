@@ -11,7 +11,10 @@ export async function About() {
   const sectionT = await getTranslations("Sections.about");
 
   return (
-    <section id="about" className="scroll-mt-24 bg-canvas">
+    <section
+      id="about"
+      className="scroll-mt-24 flex min-h-screen flex-col justify-center bg-canvas"
+    >
       <RevealGroup
         as="div"
         className="shell grid gap-12 py-24 md:grid-cols-[0.9fr_1.2fr] md:py-32"

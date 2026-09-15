@@ -9,7 +9,10 @@ export async function Projects() {
   const sectionT = await getTranslations("Sections.projects");
 
   return (
-    <section id="projects" className="scroll-mt-24 border-t border-edge">
+    <section
+      id="projects"
+      className="scroll-mt-24 flex min-h-screen flex-col justify-center border-t border-edge"
+    >
       <div className="shell py-24 md:py-32">
         <SectionHeading
           number="04"
