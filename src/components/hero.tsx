@@ -30,7 +30,13 @@ export async function Hero() {
         aria-hidden="true"
       />
 
-      <HeroRevealGroup className="shell relative grid min-h-screen grid-cols-1 items-center gap-12 py-24 pb-[10vh] sm:pb-[14vh] lg:grid-cols-[1.15fr_0.85fr] lg:items-stretch">
+      {/* Faz 6.8: min-h-screen and the scroll-indicator's reserved bottom
+          padding (pb-[14vh]) both moved to md: — below that, a stacked
+          icon+role+name+tagline+photo column can run taller than one
+          screen, and forcing full-viewport height there just crams it;
+          the indicator itself is also md:flex (hidden on mobile), so
+          reserving space for it below md was dead padding anyway. */}
+      <HeroRevealGroup className="shell relative grid grid-cols-1 items-center gap-8 py-14 pb-6 md:min-h-screen md:gap-12 md:py-24 md:pb-[14vh] lg:grid-cols-[1.15fr_0.85fr] lg:items-stretch">
         <div className="flex max-w-xl flex-col gap-6">
           <HeroRevealItem>
             {/* Icon-signature: the ssamilg.dev reference's mark above the
@@ -67,7 +73,20 @@ export async function Hero() {
           </HeroRevealItem>
         </div>
 
-        <HeroRevealItem slow className="justify-self-center lg:justify-self-end">
+        {/* w-full below lg (not just "justify-self-center"): below lg this
+            grid item's cell spans the shell's full width, and
+            justify-self-center alone shrinks the item to its own
+            content size to center it — which collapses HeroPhotoSlot's
+            own w-full to 0 against that shrunk, width-less parent (same
+            flex/grid shrink-to-fit trap fixed in photo-reveal-motion.tsx
+            for Faz 6.5). lg:w-auto reverts to the original, already-
+            verified desktop sizing (HeroPhotoSlot's width is aspect-ratio-
+            derived there via stretchOnLg, not a percentage, so it doesn't
+            need this). */}
+        <HeroRevealItem
+          slow
+          className="w-full justify-self-center lg:w-auto lg:justify-self-end"
+        >
           <HeroPhotoSlot stretchOnLg />
         </HeroRevealItem>
 

@@ -13,16 +13,16 @@ export async function Experience() {
   return (
     <section
       id="experience"
-      className="scroll-mt-24 flex min-h-screen flex-col justify-center border-t border-edge bg-panel"
+      className="scroll-mt-24 flex flex-col justify-center border-t border-edge bg-panel md:min-h-screen"
     >
-      <div className="shell py-24 md:py-32">
+      <div className="shell py-14 md:py-32">
         <SectionHeading
           icon={Briefcase}
           label={sectionT("label")}
           title={sectionT("title")}
         />
 
-        <RevealGroup as="ol" className="mt-14">
+        <RevealGroup as="ol" className="mt-8 md:mt-14">
           {portfolio.experience.map((item) => (
             <RevealItem
               key={`${item.role[locale]}-${item.period}`}

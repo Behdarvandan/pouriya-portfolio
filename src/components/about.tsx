@@ -14,11 +14,11 @@ export async function About() {
   return (
     <section
       id="about"
-      className="scroll-mt-24 flex min-h-screen flex-col justify-center bg-canvas"
+      className="scroll-mt-24 flex flex-col justify-center bg-canvas md:min-h-screen"
     >
       <RevealGroup
         as="div"
-        className="shell grid gap-12 py-24 md:grid-cols-[0.9fr_1.2fr] md:py-32"
+        className="shell grid gap-8 py-14 md:grid-cols-[0.9fr_1.2fr] md:gap-12 md:py-32"
       >
         <RevealItem as="div">
           <SectionHeading

@@ -23,11 +23,11 @@ export async function Contact() {
   return (
     <section
       id="contact"
-      className="scroll-mt-24 flex min-h-screen flex-col justify-center border-t border-edge bg-panel"
+      className="scroll-mt-24 flex flex-col justify-center border-t border-edge bg-panel md:min-h-screen"
     >
       <RevealGroup
         as="div"
-        className="shell flex flex-col items-start gap-10 py-24 md:flex-row md:items-end md:justify-between md:py-32"
+        className="shell flex flex-col items-start gap-6 py-14 md:flex-row md:items-end md:justify-between md:gap-10 md:py-32"
       >
         <RevealItem as="div" className="flex max-w-2xl flex-col gap-6">
           <p className="flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-accent">

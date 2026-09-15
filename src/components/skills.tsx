@@ -13,9 +13,9 @@ export async function Skills() {
   return (
     <section
       id="skills"
-      className="scroll-mt-24 flex min-h-screen flex-col justify-center border-t border-edge bg-canvas"
+      className="scroll-mt-24 flex flex-col justify-center border-t border-edge bg-canvas md:min-h-screen"
     >
-      <div className="shell py-24 md:py-32">
+      <div className="shell py-14 md:py-32">
         <SectionHeading
           icon={Code2}
           label={sectionT("label")}
@@ -23,9 +23,12 @@ export async function Skills() {
           description={sectionT("description")}
         />
 
+        {/* grid-cols-1 is implicit below sm (no grid-cols-* set), so
+            categories already stack one per row on phones — sm:grid-cols-2
+            only kicks in at 640px+. */}
         <RevealGroup
           as="div"
-          className="mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-4"
+          className="mt-8 grid gap-6 sm:grid-cols-2 md:mt-14 md:gap-8 lg:grid-cols-4"
         >
           {portfolio.skills.map((category) => (
             <RevealItem

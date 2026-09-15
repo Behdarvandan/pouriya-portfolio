@@ -12,9 +12,9 @@ export async function Projects() {
   return (
     <section
       id="projects"
-      className="scroll-mt-24 flex min-h-screen flex-col justify-center border-t border-edge"
+      className="scroll-mt-24 flex flex-col justify-center border-t border-edge md:min-h-screen"
     >
-      <div className="shell py-24 md:py-32">
+      <div className="shell py-14 md:py-32">
         <SectionHeading
           icon={FolderGit2}
           label={sectionT("label")}
@@ -23,10 +23,12 @@ export async function Projects() {
         />
 
         {/* perspective on the grid, not each card, so hover tilt reads as one
-            shared vanishing point instead of each card tilting independently */}
+            shared vanishing point instead of each card tilting independently.
+            grid-cols-1 is implicit below md (no grid-cols-* set), so cards
+            already stack full-width, one per row, on phones. */}
         <RevealGroup
           as="div"
-          className="mt-14 grid gap-px border border-edge bg-edge [perspective:1200px] md:grid-cols-2"
+          className="mt-8 grid gap-px border border-edge bg-edge [perspective:1200px] md:mt-14 md:grid-cols-2"
         >
           {portfolio.projects.map((project) => (
             <ProjectCard key={project.slug} project={project} />

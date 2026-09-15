@@ -85,11 +85,17 @@ export function HeroScrollIndicator({
   // is gated on this raw flag, not on the resolved duration.
   const prefersReducedMotion = useReducedMotion();
 
+  // No `display` utility (inline-flex/flex) hardcoded here — the caller's
+  // className owns that (hero.tsx passes "hidden md:flex" to hide this on
+  // mobile). A hardcoded `inline-flex` here previously fought "hidden" at
+  // equal specificity, with the winner decided by Tailwind's generated CSS
+  // source order rather than the intended breakpoint — it was losing, so
+  // the indicator rendered on every viewport width, mobile included.
   return (
     <a
       href={href}
       aria-label={label}
-      className={`inline-flex flex-col items-center gap-2 text-faint transition-colors hover:text-ink ${className ?? ""}`}
+      className={`flex-col items-center gap-2 text-faint transition-colors hover:text-ink ${className ?? ""}`}
     >
       <span className="font-mono text-[10px] uppercase tracking-[0.3em]">{label}</span>
       <motion.span

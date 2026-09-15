@@ -28,7 +28,7 @@ export function ProjectCard({ project }: { project: Project }) {
       whileHover={{ rotateX: -4, y: -4, scale: 1.01, zIndex: 1 }}
       transition={{ type: "spring", stiffness: 300, damping: 22 }}
       style={{ transformStyle: "preserve-3d" }}
-      className="group flex flex-col gap-5 bg-canvas p-7 transition-colors hover:bg-panel"
+      className="group flex flex-col gap-4 bg-canvas p-5 transition-colors hover:bg-panel md:gap-5 md:p-7"
     >
       <div className="flex items-start justify-between gap-4">
         <div className="flex flex-col gap-1">

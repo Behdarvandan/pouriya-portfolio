@@ -164,9 +164,20 @@
   );
 }
 
-/* Engineering-grid texture for the hero, built from repeating gradients so
-   no image asset is needed. Faded top-to-bottom with a mask so it reads as
-   backdrop, not decoration competing with the copy. */
+/* Engineering-grid texture, built from repeating gradients so no image
+   asset is needed. Faded in from the top with a mask so it reads as
+   backdrop, not decoration competing with the hero copy.
+   Faz 6.8 fix: this element spans the whole page (page.tsx), not just the
+   hero, since Faz 6.7 — the mask used to be a radial-gradient sized in %,
+   which sizes against THIS ELEMENT's own box. Once that box became the
+   full page height, "60%" stopped meaning "near the hero" and started
+   meaning "roughly halfway down the entire page," so the grid faded to
+   fully transparent well before Contact — exactly the "cuts off partway
+   down" bug. A vh-based (viewport-relative, not element-relative) linear
+   fade-in avoids that: it always completes within the same fixed distance
+   from the top regardless of total page height, and — a plain 2-stop
+   gradient holds its last color for the remainder of the line — stays
+   fully opaque for every section after that, all the way to Contact. */
 .blueprint-grid {
   background-image:
     repeating-linear-gradient(
@@ -178,12 +189,8 @@
       color-mix(in srgb, var(--accent) 7%, transparent) 0 1px,
       transparent 1px 40px
     );
-  mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black 45%, transparent 100%);
-  -webkit-mask-image: radial-gradient(
-    ellipse 80% 60% at 50% 0%,
-    black 45%,
-    transparent 100%
-  );
+  mask-image: linear-gradient(to bottom, transparent, black 40vh);
+  -webkit-mask-image: linear-gradient(to bottom, transparent, black 40vh);
 }
 
 /* Static duotone identity wash (Faz 4) — paints on first load, no hover or
