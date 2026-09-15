@@ -1,9 +1,11 @@
 "use client";
 
-import { ArrowUpRight } from "lucide-react";
+import { ArrowLeft, ArrowRight, ArrowUpLeft, ArrowUpRight } from "lucide-react";
+import { useLocale, useTranslations } from "next-intl";
 import Link from "next/link";
 import { motion } from "framer-motion";
 
+import type { Locale } from "@/i18n/routing";
 import type { Project } from "@/config/portfolio";
 import { GitHubIcon } from "../icons";
 import { itemVariants } from "./reveal";
@@ -11,6 +13,15 @@ import { itemVariants } from "./reveal";
 // rotateX needs a perspective ancestor (set on the grid in projects.tsx) and
 // transform-style: preserve-3d here so the tilt reads as depth, not a skew.
 export function ProjectCard({ project }: { project: Project }) {
+  const locale = useLocale() as Locale;
+  const t = useTranslations("ProjectCard");
+  // fa is RTL: an "up-right" arrow reads as pointing backwards in a
+  // right-to-left flow, so the external/forward-motion icons mirror to
+  // "up-left" / "left" for that locale only (see AGENTS.md Faz 5 RTL scope).
+  const isRtl = locale === "fa";
+  const ExternalArrow = isRtl ? ArrowUpLeft : ArrowUpRight;
+  const ForwardArrow = isRtl ? ArrowLeft : ArrowRight;
+
   return (
     <motion.article
       variants={itemVariants}
@@ -26,11 +37,11 @@ export function ProjectCard({ project }: { project: Project }) {
           </h3>
           <span className="font-mono text-xs text-faint">{project.slug}</span>
         </div>
-        <ArrowUpRight className="h-5 w-5 shrink-0 text-faint transition-colors group-hover:text-accent" />
+        <ExternalArrow className="h-5 w-5 shrink-0 text-faint transition-colors group-hover:text-accent" />
       </div>
 
       <p className="text-sm leading-relaxed text-muted">
-        {project.description}
+        {project.description[locale]}
       </p>
 
       <div className="mt-auto flex flex-col gap-4 pt-2">
@@ -47,7 +58,7 @@ export function ProjectCard({ project }: { project: Project }) {
 
         <div className="border-t border-edge pt-4">
           <span className="inline-flex items-center rounded-full border border-accent/30 bg-accent/10 px-3 py-1 font-mono text-xs text-accent">
-            {project.badge}
+            {project.badge[locale]}
           </span>
         </div>
 
@@ -59,7 +70,7 @@ export function ProjectCard({ project }: { project: Project }) {
             className="inline-flex items-center gap-1.5 text-xs font-medium text-muted transition-colors hover:text-ink"
           >
             <GitHubIcon className="h-3.5 w-3.5" />
-            View source
+            {t("viewSource")}
           </a>
 
           {/* Faz 4: warm accent marks a live, running deployment — distinct
@@ -71,8 +82,8 @@ export function ProjectCard({ project }: { project: Project }) {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1.5 text-xs font-medium text-accent-warm transition-colors hover:text-ink"
             >
-              <ArrowUpRight className="h-3.5 w-3.5" />
-              Live demo
+              <ExternalArrow className="h-3.5 w-3.5" />
+              {t("liveDemo")}
             </a>
           ) : null}
 
@@ -81,7 +92,8 @@ export function ProjectCard({ project }: { project: Project }) {
               href={`/work/${project.caseStudySlug}`}
               className="inline-flex items-center gap-1.5 text-xs font-medium text-accent transition-colors hover:text-ink"
             >
-              Case study →
+              {t("caseStudy")}
+              <ForwardArrow className="h-3.5 w-3.5" />
             </Link>
           ) : null}
         </div>

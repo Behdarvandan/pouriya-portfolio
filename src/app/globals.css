@@ -50,6 +50,13 @@
     font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
   }
 
+  /* Farsi only: swap body copy to Vazirmatn (Latin+Arabic-script coverage),
+     set only when html[lang="fa"] (see src/lib/fonts.ts). */
+  html[lang="fa"] body {
+    font-family: var(--font-vazirmatn), var(--font-geist-sans), ui-sans-serif,
+      system-ui, sans-serif;
+  }
+
   ::selection {
     background-color: color-mix(in srgb, var(--accent) 30%, transparent);
     color: var(--ink);

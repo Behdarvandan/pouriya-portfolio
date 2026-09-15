@@ -1,0 +1,71 @@
+{
+  "$comment": "AI-translated draft, needs native review before considered final.",
+  "Nav": {
+    "about": "Hakkımda",
+    "experience": "Deneyim",
+    "skills": "Yetenekler",
+    "projects": "Projeler",
+    "contact": "İletişim",
+    "contactButton": "İletişim"
+  },
+  "A11y": {
+    "skipToContent": "İçeriğe geç"
+  },
+  "Hero": {
+    "viewProjects": "Projeleri görüntüle",
+    "getInTouch": "İletişime geç",
+    "scrollDown": "Aşağı kaydır"
+  },
+  "Sections": {
+    "about": {
+      "label": "Hakkımda",
+      "title": "Yük altında bile sade kalan bulut sistemleri."
+    },
+    "experience": {
+      "label": "Deneyim",
+      "title": "Kanıtlanmış bir teslimat geçmişi."
+    },
+    "skills": {
+      "label": "Yetenekler",
+      "title": "Teknik yetkinlikler.",
+      "description": "Bulut, frontend, güvenlik ve yapay zeka genelinde uçtan uca bir bakış."
+    },
+    "projects": {
+      "label": "Projeler",
+      "title": "Üretim mimarileri.",
+      "description": "Üretime alınmış dört bulut ve yapay zeka sistemi, her biri belirli bir altyapı veya veri sorununu çözüyor."
+    },
+    "contact": {
+      "label": "İletişim",
+      "title": "Birlikte bir şeyler inşa edelim.",
+      "description": "İş birlikleri için ya da sadece merhaba demek için iletişime geçmekten çekinmeyin."
+    }
+  },
+  "About": {
+    "locationLabel": "Konum",
+    "timezoneLabel": "Saat Dilimi",
+    "availabilityLabel": "Müsaitlik",
+    "emailLabel": "E-posta"
+  },
+  "Contact": {
+    "emailLabel": "E-posta",
+    "locationLabel": "Konum",
+    "timezoneLabel": "Saat Dilimi"
+  },
+  "ProjectCard": {
+    "viewSource": "Kaynağı görüntüle",
+    "liveDemo": "Canlı demo",
+    "caseStudy": "Vaka analizi"
+  },
+  "Footer": {
+    "backToTop": "Başa dön",
+    "builtWith": "Next.js, TypeScript ve Tailwind CSS ile geliştirildi."
+  },
+  "LocaleSwitcher": {
+    "label": "Dil",
+    "en": "English",
+    "de": "Deutsch",
+    "tr": "Türkçe",
+    "fa": "فارسی"
+  }
+}

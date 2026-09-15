@@ -1,8 +1,14 @@
+import { getLocale, getTranslations } from "next-intl/server";
+
 import { portfolio } from "@/config/portfolio";
+import type { Locale } from "@/i18n/routing";
 import { SectionHeading } from "./section";
 import { RevealGroup, RevealItem } from "./motion/reveal";
 
-export function Skills() {
+export async function Skills() {
+  const locale = (await getLocale()) as Locale;
+  const sectionT = await getTranslations("Sections.skills");
+
   return (
     <section
       id="skills"
@@ -11,9 +17,9 @@ export function Skills() {
       <div className="shell py-24 md:py-32">
         <SectionHeading
           number="03"
-          label="Skills"
-          title="Technical capabilities."
-          description="A full-stack view across cloud, frontend, security, and AI."
+          label={sectionT("label")}
+          title={sectionT("title")}
+          description={sectionT("description")}
         />
 
         <RevealGroup
@@ -22,12 +28,12 @@ export function Skills() {
         >
           {portfolio.skills.map((category) => (
             <RevealItem
-              key={category.category}
+              key={category.category[locale]}
               as="div"
               className="flex flex-col gap-4"
             >
               <h3 className="font-mono text-xs uppercase tracking-[0.2em] text-accent">
-                {category.category}
+                {category.category[locale]}
               </h3>
               <ul className="flex flex-wrap gap-2">
                 {category.items.map((item) => (

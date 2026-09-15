@@ -1,7 +1,12 @@
+import { getLocale } from "next-intl/server";
+
 import { portfolio } from "@/config/portfolio";
+import type { Locale } from "@/i18n/routing";
 import { RevealGroup, RevealItem } from "./motion/reveal";
 
-export function Metrics() {
+export async function Metrics() {
+  const locale = (await getLocale()) as Locale;
+
   return (
     <section id="metrics" className="border-y border-edge">
       <RevealGroup
@@ -10,7 +15,7 @@ export function Metrics() {
       >
         {portfolio.metrics.map((metric) => (
           <RevealItem
-            key={metric.label}
+            key={metric.label[locale]}
             as="div"
             className="flex flex-col gap-2 bg-canvas px-6 py-10"
           >
@@ -18,7 +23,7 @@ export function Metrics() {
               {metric.value}
             </span>
             <span className="text-sm leading-snug text-muted">
-              {metric.label}
+              {metric.label[locale]}
             </span>
           </RevealItem>
         ))}

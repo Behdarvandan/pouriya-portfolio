@@ -35,7 +35,10 @@ export function personJsonLd(): PersonJsonLd {
     "@context": "https://schema.org",
     "@type": "Person",
     name: portfolio.name,
-    jobTitle: portfolio.role,
+    // Intentionally English-fixed, not locale-varied: schema.org consumers
+    // don't benefit from a translated jobTitle here, and it keeps this one
+    // JSON-LD block identical across locales (see AGENTS.md Faz 5 SEO notes).
+    jobTitle: portfolio.role.en,
     url: SITE_URL,
     email: portfolio.email,
     sameAs: portfolio.socials.map((social) => social.href),

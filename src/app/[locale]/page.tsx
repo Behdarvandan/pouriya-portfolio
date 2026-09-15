@@ -1,3 +1,5 @@
+import { getTranslations, setRequestLocale } from "next-intl/server";
+
 import { Nav } from "@/components/nav";
 import { Hero } from "@/components/hero";
 import { Metrics } from "@/components/metrics";
@@ -8,7 +10,19 @@ import { Projects } from "@/components/projects";
 import { Contact } from "@/components/contact";
 import { Footer } from "@/components/footer";
 
-export default function Home() {
+export default async function Home({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  // next-intl's static-rendering guide requires setRequestLocale in every
+  // layout AND page in the segment (not just the layout) for the page to be
+  // eligible for prerendering via the layout's generateStaticParams.
+  const { locale } = await params;
+  setRequestLocale(locale);
+
+  const t = await getTranslations("Footer");
+
   return (
     <div className="flex min-h-screen flex-col">
       <Nav />
@@ -21,7 +35,10 @@ export default function Home() {
         <Projects />
         <Contact />
       </main>
-      <Footer />
+      <Footer
+        backToTopLabel={t("backToTop")}
+        builtWithLabel={t("builtWith")}
+      />
     </div>
   );
 }

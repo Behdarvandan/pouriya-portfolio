@@ -1,18 +1,23 @@
+import { getTranslations } from "next-intl/server";
+
 import { portfolio } from "@/config/portfolio";
 import { NavContactLink } from "./motion/nav-contact-link";
+import { LocaleSwitcher } from "./locale-switcher";
 
 const links = [
-  { href: "#about", label: "About" },
-  { href: "#experience", label: "Experience" },
-  { href: "#skills", label: "Skills" },
-  { href: "#projects", label: "Projects" },
-  { href: "#contact", label: "Contact" },
-];
+  { href: "#about", key: "about" },
+  { href: "#experience", key: "experience" },
+  { href: "#skills", key: "skills" },
+  { href: "#projects", key: "projects" },
+  { href: "#contact", key: "contact" },
+] as const;
 
-export function Nav() {
+export async function Nav() {
+  const t = await getTranslations("Nav");
+
   return (
     <header className="sticky top-0 z-50 border-b border-edge bg-canvas/80 backdrop-blur-md">
-      <div className="shell flex h-16 items-center justify-between">
+      <div className="shell flex h-16 items-center justify-between gap-4">
         <a
           href="#top"
           className="font-mono text-sm font-semibold tracking-tight text-ink"
@@ -28,14 +33,17 @@ export function Nav() {
               href={link.href}
               className="font-mono text-xs uppercase tracking-widest text-muted transition-colors hover:text-ink"
             >
-              {link.label}
+              {t(link.key)}
             </a>
           ))}
         </nav>
 
-        <NavContactLink href={`mailto:${portfolio.email}`}>
-          Contact
-        </NavContactLink>
+        <div className="flex items-center gap-4">
+          <LocaleSwitcher />
+          <NavContactLink href={`mailto:${portfolio.email}`}>
+            {t("contactButton")}
+          </NavContactLink>
+        </div>
       </div>
     </header>
   );

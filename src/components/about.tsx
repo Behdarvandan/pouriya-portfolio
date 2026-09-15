@@ -1,8 +1,15 @@
+import { getLocale, getTranslations } from "next-intl/server";
+
 import { portfolio } from "@/config/portfolio";
+import type { Locale } from "@/i18n/routing";
 import { SectionHeading } from "./section";
 import { RevealGroup, RevealItem } from "./motion/reveal";
 
-export function About() {
+export async function About() {
+  const locale = (await getLocale()) as Locale;
+  const t = await getTranslations("About");
+  const sectionT = await getTranslations("Sections.about");
+
   return (
     <section id="about" className="scroll-mt-24 bg-canvas">
       <RevealGroup
@@ -12,43 +19,41 @@ export function About() {
         <RevealItem as="div">
           <SectionHeading
             number="01"
-            label="About"
-            title="Cloud systems that stay simple under load."
+            label={sectionT("label")}
+            title={sectionT("title")}
           />
         </RevealItem>
 
         <RevealItem as="div" className="flex flex-col gap-6">
           {portfolio.bio.map((paragraph) => (
             <p
-              key={paragraph}
+              key={paragraph[locale]}
               className="text-base leading-relaxed text-muted md:text-lg"
             >
-              {paragraph}
+              {paragraph[locale]}
             </p>
           ))}
 
           <dl className="mt-4 grid gap-4 border-t border-edge pt-6 font-mono text-xs uppercase tracking-widest">
             <div className="flex items-center justify-between gap-4">
-              <dt className="text-faint">Location</dt>
-              <dd className="text-right text-ink">
-                {portfolio.contact.location}
+              <dt className="text-faint">{t("locationLabel")}</dt>
+              {/* text-end (logical), not text-right (physical) — reads
+                  correctly in the fa RTL layout too. */}
+              <dd className="text-end text-ink">{portfolio.contact.location}</dd>
+            </div>
+            <div className="flex items-center justify-between gap-4">
+              <dt className="text-faint">{t("timezoneLabel")}</dt>
+              <dd className="text-end text-ink">{portfolio.contact.timezone}</dd>
+            </div>
+            <div className="flex items-center justify-between gap-4">
+              <dt className="text-faint">{t("availabilityLabel")}</dt>
+              <dd className="text-end text-ink">
+                {portfolio.availability[locale]}
               </dd>
             </div>
             <div className="flex items-center justify-between gap-4">
-              <dt className="text-faint">Timezone</dt>
-              <dd className="text-right text-ink">
-                {portfolio.contact.timezone}
-              </dd>
-            </div>
-            <div className="flex items-center justify-between gap-4">
-              <dt className="text-faint">Availability</dt>
-              <dd className="text-right text-ink">
-                {portfolio.availability}
-              </dd>
-            </div>
-            <div className="flex items-center justify-between gap-4">
-              <dt className="text-faint">Email</dt>
-              <dd className="text-right text-ink">{portfolio.email}</dd>
+              <dt className="text-faint">{t("emailLabel")}</dt>
+              <dd className="text-end text-ink">{portfolio.email}</dd>
             </div>
           </dl>
         </RevealItem>

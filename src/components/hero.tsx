@@ -1,11 +1,16 @@
 import { ArrowDown, ArrowUpRight } from "lucide-react";
+import { getLocale, getTranslations } from "next-intl/server";
 
 import { portfolio } from "@/config/portfolio";
+import type { Locale } from "@/i18n/routing";
 import { RotatingText } from "./rotating-text";
 import { SocialIcon } from "./icons";
 import { RevealGroup, RevealItem } from "./motion/reveal";
 
-export function Hero() {
+export async function Hero() {
+  const locale = (await getLocale()) as Locale;
+  const t = await getTranslations("Hero");
+
   return (
     <section id="top" className="relative overflow-hidden">
       <div
@@ -34,7 +39,7 @@ export function Hero() {
               <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
             </span>
             <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted">
-              {portfolio.availability}
+              {portfolio.availability[locale]}
             </p>
           </RevealItem>
 
@@ -46,13 +51,15 @@ export function Hero() {
 
           <RevealItem as="div">
             <p className="font-mono text-sm uppercase tracking-widest text-accent sm:text-base">
-              {portfolio.role}
+              {portfolio.role[locale]}
             </p>
           </RevealItem>
 
           <RevealItem as="div">
             <p className="max-w-xl text-lg leading-relaxed text-muted sm:text-xl">
-              <RotatingText phrases={portfolio.taglines} />
+              <RotatingText
+                phrases={portfolio.taglines.map((tagline) => tagline[locale])}
+              />
             </p>
           </RevealItem>
 
@@ -61,14 +68,14 @@ export function Hero() {
               href="#projects"
               className="group inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3 text-sm font-medium text-on-accent transition-transform hover:-translate-y-0.5"
             >
-              View projects
+              {t("viewProjects")}
               <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
             </a>
             <a
               href="#contact"
               className="inline-flex items-center gap-2 rounded-full border border-edge px-6 py-3 text-sm font-medium text-ink transition-colors hover:border-accent hover:text-accent"
             >
-              Get in touch
+              {t("getInTouch")}
             </a>
           </RevealItem>
 
@@ -91,10 +98,10 @@ export function Hero() {
         <a
           href="#metrics"
           className="absolute bottom-8 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-2 text-faint transition-colors hover:text-ink md:flex"
-          aria-label="Scroll down"
+          aria-label={t("scrollDown")}
         >
           <span className="font-mono text-[10px] uppercase tracking-[0.3em]">
-            Scroll
+            {t("scrollDown")}
           </span>
           <ArrowDown className="h-4 w-4 animate-bounce" />
         </a>

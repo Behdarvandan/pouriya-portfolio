@@ -1,17 +1,21 @@
+import { getTranslations } from "next-intl/server";
+
 import { portfolio } from "@/config/portfolio";
 import { SectionHeading } from "./section";
 import { RevealGroup } from "./motion/reveal";
 import { ProjectCard } from "./motion/project-card";
 
-export function Projects() {
+export async function Projects() {
+  const sectionT = await getTranslations("Sections.projects");
+
   return (
     <section id="projects" className="scroll-mt-24 border-t border-edge">
       <div className="shell py-24 md:py-32">
         <SectionHeading
           number="04"
-          label="Projects"
-          title="Production architectures."
-          description="Four cloud and AI systems shipped to production, each solving a specific infrastructure or data problem."
+          label={sectionT("label")}
+          title={sectionT("title")}
+          description={sectionT("description")}
         />
 
         {/* perspective on the grid, not each card, so hover tilt reads as one

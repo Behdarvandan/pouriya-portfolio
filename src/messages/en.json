@@ -1,0 +1,70 @@
+{
+  "Nav": {
+    "about": "About",
+    "experience": "Experience",
+    "skills": "Skills",
+    "projects": "Projects",
+    "contact": "Contact",
+    "contactButton": "Contact"
+  },
+  "A11y": {
+    "skipToContent": "Skip to content"
+  },
+  "Hero": {
+    "viewProjects": "View projects",
+    "getInTouch": "Get in touch",
+    "scrollDown": "Scroll down"
+  },
+  "Sections": {
+    "about": {
+      "label": "About",
+      "title": "Cloud systems that stay simple under load."
+    },
+    "experience": {
+      "label": "Experience",
+      "title": "A track record of shipping."
+    },
+    "skills": {
+      "label": "Skills",
+      "title": "Technical capabilities.",
+      "description": "A full-stack view across cloud, frontend, security, and AI."
+    },
+    "projects": {
+      "label": "Projects",
+      "title": "Production architectures.",
+      "description": "Four cloud and AI systems shipped to production, each solving a specific infrastructure or data problem."
+    },
+    "contact": {
+      "label": "Contact",
+      "title": "Let's build something together.",
+      "description": "Feel free to reach out for collaborations or just a friendly hello."
+    }
+  },
+  "About": {
+    "locationLabel": "Location",
+    "timezoneLabel": "Timezone",
+    "availabilityLabel": "Availability",
+    "emailLabel": "Email"
+  },
+  "Contact": {
+    "emailLabel": "Email",
+    "locationLabel": "Location",
+    "timezoneLabel": "Timezone"
+  },
+  "ProjectCard": {
+    "viewSource": "View source",
+    "liveDemo": "Live demo",
+    "caseStudy": "Case study"
+  },
+  "Footer": {
+    "backToTop": "Back to top",
+    "builtWith": "Built with Next.js, TypeScript & Tailwind CSS."
+  },
+  "LocaleSwitcher": {
+    "label": "Language",
+    "en": "English",
+    "de": "Deutsch",
+    "tr": "Türkçe",
+    "fa": "فارسی"
+  }
+}

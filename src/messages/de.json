@@ -1,0 +1,71 @@
+{
+  "$comment": "AI-translated draft, needs native review before considered final.",
+  "Nav": {
+    "about": "Über mich",
+    "experience": "Erfahrung",
+    "skills": "Fähigkeiten",
+    "projects": "Projekte",
+    "contact": "Kontakt",
+    "contactButton": "Kontakt"
+  },
+  "A11y": {
+    "skipToContent": "Zum Inhalt springen"
+  },
+  "Hero": {
+    "viewProjects": "Projekte ansehen",
+    "getInTouch": "Kontakt aufnehmen",
+    "scrollDown": "Nach unten scrollen"
+  },
+  "Sections": {
+    "about": {
+      "label": "Über mich",
+      "title": "Cloud-Systeme, die auch unter Last einfach bleiben."
+    },
+    "experience": {
+      "label": "Erfahrung",
+      "title": "Eine Erfolgsbilanz im Ausliefern."
+    },
+    "skills": {
+      "label": "Fähigkeiten",
+      "title": "Technische Kompetenzen.",
+      "description": "Ein Full-Stack-Blick über Cloud, Frontend, Sicherheit und KI."
+    },
+    "projects": {
+      "label": "Projekte",
+      "title": "Produktionsreife Architekturen.",
+      "description": "Vier Cloud- und KI-Systeme in Produktion, jedes löst ein spezifisches Infrastruktur- oder Datenproblem."
+    },
+    "contact": {
+      "label": "Kontakt",
+      "title": "Lass uns etwas gemeinsam aufbauen.",
+      "description": "Melde dich gerne für Kooperationen oder einfach nur zum Hallosagen."
+    }
+  },
+  "About": {
+    "locationLabel": "Standort",
+    "timezoneLabel": "Zeitzone",
+    "availabilityLabel": "Verfügbarkeit",
+    "emailLabel": "E-Mail"
+  },
+  "Contact": {
+    "emailLabel": "E-Mail",
+    "locationLabel": "Standort",
+    "timezoneLabel": "Zeitzone"
+  },
+  "ProjectCard": {
+    "viewSource": "Quellcode ansehen",
+    "liveDemo": "Live-Demo",
+    "caseStudy": "Fallstudie"
+  },
+  "Footer": {
+    "backToTop": "Nach oben",
+    "builtWith": "Erstellt mit Next.js, TypeScript & Tailwind CSS."
+  },
+  "LocaleSwitcher": {
+    "label": "Sprache",
+    "en": "English",
+    "de": "Deutsch",
+    "tr": "Türkçe",
+    "fa": "فارسی"
+  }
+}

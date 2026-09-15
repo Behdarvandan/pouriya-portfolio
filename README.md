@@ -43,7 +43,9 @@ every push and pull request against `main`.
 All CV/summary content lives in a single, strictly-typed source of truth:
 [`src/config/portfolio.ts`](src/config/portfolio.ts) — identity, bio, summary,
 social links, contact details, metrics, experience, skills, and projects.
-Update this one file to change any credential, employer, or link.
+Update this one file to change any credential, employer, or link. Narrative
+fields (bio, summary, experience, project copy, skill labels) are keyed per
+locale — see [Internationalization](#internationalization-i18n).
 
 Long-form project narratives (case studies) are a separate concern — see
 below.
@@ -70,37 +72,51 @@ card all pick it up automatically.
 
 ```
 src/
+├── proxy.ts                     # next-intl locale routing (Next.js 16 renamed middleware.ts → proxy.ts)
+├── i18n/
+│   ├── routing.ts               # locales, defaultLocale, localePrefix, localeDetection
+│   ├── request.ts               # next-intl request config (loads src/messages/{locale}.json)
+│   └── navigation.ts            # locale-aware Link/redirect/usePathname/useRouter
+├── messages/
+│   └── {en,de,tr,fa}.json       # UI chrome translations (nav, buttons, section labels, footer)
 ├── app/
-│   ├── layout.tsx              # Root layout, fonts, metadata, skip link, Person JSON-LD
-│   ├── page.tsx                # Homepage composition
+│   ├── global-not-found.tsx    # Global 404 — required because there are two root layouts (see below)
 │   ├── globals.css             # Tailwind theme tokens + base styles
-│   ├── opengraph-image.tsx     # Code-generated OG image for the homepage
-│   ├── sitemap.ts              # Sitemap (home + every case study)
+│   ├── sitemap.ts              # Sitemap (every locale's home + every case study)
 │   ├── robots.ts               # robots.txt
-│   └── work/[slug]/
-│       ├── page.tsx            # Case study route (generateStaticParams/generateMetadata)
-│       └── opengraph-image.tsx # Per-case-study OG image
+│   ├── [locale]/
+│   │   ├── layout.tsx          # Root layout #1 — <html lang dir>, fonts, hreflang alternates
+│   │   ├── page.tsx            # Homepage composition
+│   │   └── opengraph-image.tsx # Code-generated OG image, per locale
+│   └── work/
+│       ├── layout.tsx          # Root layout #2 — fixed <html lang="en" dir="ltr">, outside i18n routing
+│       └── [slug]/
+│           ├── page.tsx            # Case study route (generateStaticParams/generateMetadata)
+│           └── opengraph-image.tsx # Per-case-study OG image
 ├── components/
-│   ├── nav.tsx                 # Sticky navigation (homepage)
-│   ├── hero.tsx                # Hero section with rotating tagline
-│   ├── metrics.tsx             # Highlight metrics band
+│   ├── site-shell.tsx           # Shared skip-link + Person JSON-LD + MotionProvider (used by both root layouts)
+│   ├── locale-switcher.tsx      # EN/DE/TR/FA switcher (nav only — never shown on /work)
+│   ├── nav.tsx                  # Sticky navigation (homepage)
+│   ├── hero.tsx                 # Hero section with rotating tagline
+│   ├── metrics.tsx              # Highlight metrics band
 │   ├── about.tsx                # Bio and quick facts
-│   ├── experience.tsx          # Work timeline
-│   ├── skills.tsx               # Technology stack
-│   ├── projects.tsx            # Production projects grid
-│   ├── contact.tsx              # Contact details + social links
-│   ├── footer.tsx               # Footer
-│   ├── section.tsx              # Shared section heading
-│   ├── icons.tsx                 # GitHub brand icon
-│   ├── rotating-text.tsx        # Client tagline rotator (respects prefers-reduced-motion)
-│   ├── case-study.tsx           # Case study nav/header/body (reusable across all case studies)
-│   └── json-ld.tsx              # Renders a JSON-LD <script> tag
+│   ├── experience.tsx           # Work timeline
+│   ├── skills.tsx                # Technology stack
+│   ├── projects.tsx             # Production projects grid
+│   ├── contact.tsx               # Contact details + social links
+│   ├── footer.tsx                # Footer (translatable via props; defaults to English for /work)
+│   ├── section.tsx               # Shared section heading
+│   ├── icons.tsx                  # GitHub brand icon
+│   ├── rotating-text.tsx         # Client tagline rotator (respects prefers-reduced-motion)
+│   ├── case-study.tsx            # Case study nav/header/body (reusable across all case studies, always English)
+│   └── json-ld.tsx               # Renders a JSON-LD <script> tag
 ├── config/
-│   ├── portfolio.ts             # Types + all CV/summary content
+│   ├── portfolio.ts             # Types + all CV/summary content (narrative fields are per-locale, see i18n section)
 │   └── site.ts                  # SITE_URL — single source for absolute URLs
 ├── content/
-│   └── case-studies.ts          # Long-form case study narratives (separate concern from portfolio.ts)
+│   └── case-studies.ts          # Long-form case study narratives — always English, outside i18n entirely
 └── lib/
+    ├── fonts.ts                  # Shared next/font instances (Geist, Fraunces, Vazirmatn) for both root layouts
     ├── json-ld.ts                # Person / CreativeWork schema.org builders
     └── og-style.ts               # Shared color/size tokens for OG image generation
 ```
@@ -134,15 +150,65 @@ There are currently no images in the site. If one is added, use `next/image`
   single-page mobile experience, not an oversight. Revisit if the site grows
   beyond a single scrollable page.
 
+## Internationalization (i18n)
+
+Four locales via [`next-intl`](https://next-intl.dev): **English** (default,
+unprefixed — `/`), **German** (`/de`), **Turkish** (`/tr`), **Farsi**
+(`/fa`, RTL). Locale is chosen only through the nav's language switcher —
+there is no automatic `Accept-Language` redirect (`localeDetection: false`),
+by deliberate choice, for predictable UX and stable canonical URLs.
+
+`/work/[slug]` case studies are entirely outside i18n routing: always
+English, no language switcher shown, and the route is explicitly excluded
+from the locale-routing proxy's matcher (`src/proxy.ts`).
+
+- **Content model**: UI chrome (nav labels, buttons, section headings,
+  footer) lives in `src/messages/{locale}.json`. CV content (bio, experience,
+  project copy, skill category labels) lives in `src/config/portfolio.ts` as
+  `Record<Locale, string>` fields. Technology names, URLs, slugs, company
+  names, and dates are intentionally plain strings — never translated.
+- **Translation quality**: the German, Turkish, and Farsi strings (in both
+  `src/messages/*.json` and `portfolio.ts`) are AI-translated drafts — flagged
+  with a `$comment` in each message file — and need a native-speaker review
+  before being considered final, given this is a professional CV where tone
+  and word choice matter.
+- **RTL scope (known limitation)**: Farsi sets `<html dir="rtl">`, which
+  mirrors flexbox/grid layout automatically. On top of that, three spots
+  known to break under `dir="rtl"` were explicitly fixed: the project card's
+  arrow icons (`ArrowUpRight`/`ArrowRight` → `ArrowUpLeft`/`ArrowLeft` for
+  `fa`), and `about.tsx`'s quick-facts list (`text-right` → the logical
+  `text-end`). The rest of the codebase was **not** swept for physical
+  (`pl-`/`pr-`/`left-`/`right-`, etc.) → logical (`ps-`/`pe-`/`start-`/`end-`)
+  Tailwind utilities in this pass — e.g. the skip-to-content link in
+  `site-shell.tsx` still positions itself with `focus:left-4` rather than
+  `focus:start-4`, so it anchors to the physical left even in the `fa` RTL
+  layout. Flagged here as a deliberate scope cut, not an oversight — a
+  follow-up pass should grep for these across the whole `[locale]` tree.
+- **Farsi font**: [Vazirmatn](https://fonts.google.com/specimen/Vazirmatn)
+  (`next/font/google`, Latin + Arabic-script subsets), loaded only when
+  `locale === "fa"` (see `src/lib/fonts.ts`).
+- **OG image, fa only (known limitation)**: `next/og`'s renderer (Satori)
+  throws `lookupType: 5 - substFormat: 3 is not yet supported` on Persian
+  text — a documented Satori limitation with Arabic-script contextual
+  letter-joining, independent of font choice, since real Arabic/Persian
+  fonts need that same GSUB table for cursive joining. `[locale]/opengraph-image.tsx`
+  falls back to the English availability/role strings for `fa` specifically
+  so the share-card image renders at all instead of 500ing. The rest of the
+  `fa` site is unaffected — this is scoped to the OG image renderer only.
+
 ## SEO
 
 - `metadataBase`, Open Graph, and Twitter Card metadata on every route.
-- Code-generated OG images (`next/og`) for the homepage and every case study
-  — no external image assets to maintain.
-- `sitemap.xml` and `robots.txt`, generated from the same case study data as
-  the routes themselves.
-- JSON-LD: `Person` on every page (root layout), `CreativeWork` on every case
-  study page.
+- `hreflang` alternates (`alternates.languages`, plus `x-default`) on every
+  `[locale]` page, and self-referencing hreflang on every locale's home entry
+  in `sitemap.xml`.
+- Code-generated OG images (`next/og`) for the homepage (per locale) and
+  every case study — no external image assets to maintain.
+- `sitemap.xml` and `robots.txt`, generated from the same case study/locale
+  data as the routes themselves.
+- JSON-LD: `Person` on every page (kept English-fixed across all locales —
+  see [Internationalization](#internationalization-i18n)), `CreativeWork` on
+  every case study page.
 
 ## Deployment
 

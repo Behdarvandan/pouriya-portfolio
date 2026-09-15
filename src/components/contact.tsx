@@ -1,19 +1,23 @@
 import { Clock, Mail, MapPin } from "lucide-react";
+import { getTranslations } from "next-intl/server";
 
 import { portfolio } from "@/config/portfolio";
 import { SocialIcon } from "./icons";
 import { RevealGroup, RevealItem } from "./motion/reveal";
 
-export function Contact() {
+export async function Contact() {
+  const t = await getTranslations("Contact");
+  const sectionT = await getTranslations("Sections.contact");
+
   const rows = [
     {
       icon: Mail,
-      label: "Email",
+      label: t("emailLabel"),
       value: portfolio.contact.email,
       href: `mailto:${portfolio.contact.email}`,
     },
-    { icon: MapPin, label: "Location", value: portfolio.contact.location },
-    { icon: Clock, label: "Timezone", value: portfolio.contact.timezone },
+    { icon: MapPin, label: t("locationLabel"), value: portfolio.contact.location },
+    { icon: Clock, label: t("timezoneLabel"), value: portfolio.contact.timezone },
   ];
 
   return (
@@ -27,14 +31,13 @@ export function Contact() {
       >
         <RevealItem as="div" className="flex max-w-2xl flex-col gap-6">
           <p className="font-mono text-xs uppercase tracking-[0.2em] text-accent">
-            05 — Contact
+            05 — {sectionT("label")}
           </p>
           <h2 className="font-display text-4xl font-medium leading-tight tracking-tight text-ink sm:text-5xl">
-            Let&apos;s build something together.
+            {sectionT("title")}
           </h2>
           <p className="text-base leading-relaxed text-muted md:text-lg">
-            Feel free to reach out for collaborations or just a friendly
-            hello.
+            {sectionT("description")}
           </p>
         </RevealItem>
 

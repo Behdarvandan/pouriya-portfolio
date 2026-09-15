@@ -1,0 +1,71 @@
+{
+  "$comment": "AI-translated draft, needs native review before considered final.",
+  "Nav": {
+    "about": "درباره من",
+    "experience": "سوابق کاری",
+    "skills": "مهارت‌ها",
+    "projects": "پروژه‌ها",
+    "contact": "تماس",
+    "contactButton": "تماس"
+  },
+  "A11y": {
+    "skipToContent": "رفتن به محتوا"
+  },
+  "Hero": {
+    "viewProjects": "مشاهده پروژه‌ها",
+    "getInTouch": "در تماس باشید",
+    "scrollDown": "پیمایش به پایین"
+  },
+  "Sections": {
+    "about": {
+      "label": "درباره من",
+      "title": "سیستم‌های ابری که زیر بار هم ساده می‌مانند."
+    },
+    "experience": {
+      "label": "سوابق کاری",
+      "title": "سابقه‌ای اثبات‌شده در ارائه محصول."
+    },
+    "skills": {
+      "label": "مهارت‌ها",
+      "title": "توانمندی‌های فنی.",
+      "description": "نگاهی full-stack به ابر، فرانت‌اند، امنیت و هوش مصنوعی."
+    },
+    "projects": {
+      "label": "پروژه‌ها",
+      "title": "معماری‌های آماده تولید.",
+      "description": "چهار سیستم ابری و هوش مصنوعی که به تولید رسیده‌اند، هرکدام برای حل یک مشکل مشخص زیرساختی یا داده‌ای."
+    },
+    "contact": {
+      "label": "تماس",
+      "title": "بیایید با هم چیزی بسازیم.",
+      "description": "برای همکاری یا فقط یک سلام دوستانه، خوشحال می‌شوم با من در تماس باشید."
+    }
+  },
+  "About": {
+    "locationLabel": "موقعیت مکانی",
+    "timezoneLabel": "منطقه زمانی",
+    "availabilityLabel": "وضعیت همکاری",
+    "emailLabel": "ایمیل"
+  },
+  "Contact": {
+    "emailLabel": "ایمیل",
+    "locationLabel": "موقعیت مکانی",
+    "timezoneLabel": "منطقه زمانی"
+  },
+  "ProjectCard": {
+    "viewSource": "مشاهده کد منبع",
+    "liveDemo": "دمو زنده",
+    "caseStudy": "مطالعه موردی"
+  },
+  "Footer": {
+    "backToTop": "بازگشت به بالا",
+    "builtWith": "ساخته‌شده با Next.js، TypeScript و Tailwind CSS."
+  },
+  "LocaleSwitcher": {
+    "label": "زبان",
+    "en": "English",
+    "de": "Deutsch",
+    "tr": "Türkçe",
+    "fa": "فارسی"
+  }
+}
