@@ -15,14 +15,14 @@ export async function Experience() {
       id="experience"
       className="scroll-mt-24 flex flex-col justify-center border-t border-edge bg-panel md:min-h-screen"
     >
-      <div className="shell py-14 md:py-32">
+      <div className="shell py-[var(--space-section)]">
         <SectionHeading
           icon={Briefcase}
           label={sectionT("label")}
           title={sectionT("title")}
         />
 
-        <RevealGroup as="ol" className="mt-8 md:mt-14">
+        <RevealGroup as="ol" className="mt-[var(--space-section-sm)]">
           {portfolio.experience.map((item) => (
             <RevealItem
               key={`${item.role[locale]}-${item.period}`}

@@ -27,7 +27,7 @@ export async function Contact() {
     >
       <RevealGroup
         as="div"
-        className="shell flex flex-col items-start gap-6 py-14 md:flex-row md:items-end md:justify-between md:gap-10 md:py-32"
+        className="shell flex flex-col items-start gap-6 py-[var(--space-section)] md:flex-row md:items-end md:justify-between md:gap-10"
       >
         <RevealItem as="div" className="flex max-w-2xl flex-col gap-6">
           <p className="flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-accent">

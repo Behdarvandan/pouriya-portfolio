@@ -16,10 +16,10 @@ const SECTION_IDS = [
 type SectionId = (typeof SECTION_IDS)[number];
 
 /**
- * Faz 6.6: right-edge dot nav (ssamilg.dev reference), one dot per main
- * homepage section. Homepage-only by construction — these ids don't exist
- * on /resume or /work/[slug], so this only gets rendered from
- * app/[locale]/page.tsx, not nav.tsx (which is shared across routes).
+ * Faz 6.6: right-edge dot nav, one dot per main homepage section.
+ * Homepage-only by construction — these ids don't exist on /resume or
+ * /work/[slug], so this only gets rendered from app/[locale]/page.tsx, not
+ * nav.tsx (which is shared across routes).
  *
  * Active section comes from useScroll's page-level `scrollY` (not an
  * IntersectionObserver): each tick, find the last section whose top has
@@ -27,6 +27,21 @@ type SectionId = (typeof SECTION_IDS)[number];
  * to that MotionValue without putting scroll position itself in React
  * state — only the derived active id triggers a re-render, and only when
  * it actually changes.
+ *
+ * Faz 6.10, after studying ssamilg.dev's source (throwaway clone, not
+ * copied): two adaptations from that reference —
+ * 1) It never actually shows this nav on mobile at all (its whole homepage
+ *    swaps to a different, plain page below 768px, so the dot-nav concept
+ *    simply doesn't exist there). We were explicitly asked to keep this
+ *    visible on mobile regardless — `hidden md:flex` is gone below, on
+ *    purpose, diverging from the reference here.
+ * 2) Its hover-tooltip mechanism (label fades/slides in only on
+ *    :hover — never shown permanently for the active dot, which is
+ *    distinguished purely by size+color) is reused as-is: same idea, ported
+ *    to our own tokens/colors. We use scale+opacity instead of its
+ *    translate-x slide, since translate-x is a physical direction and this
+ *    codebase's other RTL-sensitive spots (fa locale) use logical
+ *    properties throughout — a scale reveal has no direction to get wrong.
  */
 export function ScrollDots() {
   const { scrollY } = useScroll();
@@ -61,10 +76,7 @@ export function ScrollDots() {
   });
 
   return (
-    <nav
-      aria-label="Section"
-      className="fixed inset-y-0 end-4 z-40 hidden md:flex md:items-center"
-    >
+    <nav aria-label="Section" className="fixed inset-y-0 end-4 z-40 flex items-center">
       <ul className="flex flex-col items-center gap-4">
         {SECTION_IDS.map((id) => {
           const isActive = id === activeId;
@@ -74,8 +86,17 @@ export function ScrollDots() {
                 href={`#${id}`}
                 aria-label={labels[id]}
                 aria-current={isActive ? "true" : undefined}
-                className="group flex h-4 w-4 items-center justify-center"
+                className="group relative flex h-4 w-4 items-center justify-center"
               >
+                {/* Hover-only label, reused as the tooltip's visible text —
+                    aria-hidden since the anchor's own aria-label already
+                    carries this to screen readers. */}
+                <span
+                  aria-hidden="true"
+                  className="pointer-events-none absolute end-full me-3 origin-[100%_center] scale-90 whitespace-nowrap rounded-md border border-edge bg-panel px-2.5 py-1 font-mono text-[11px] uppercase tracking-widest text-ink opacity-0 shadow-sm transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] group-hover:scale-100 group-hover:opacity-100"
+                >
+                  {labels[id]}
+                </span>
                 <span
                   className={`block rounded-full transition-all duration-300 ${
                     isActive

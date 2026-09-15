@@ -38,7 +38,10 @@
      margin if the grid ratio in hero.tsx changes. */
   --text-display: clamp(4rem, 3.6607rem + 1.3571vw, 8.75rem); /* 64px -> 140px */
   --text-h1: clamp(2.75rem, 2.33rem + 1.67vw, 4rem); /* 44px -> 64px */
-  --text-h2: clamp(2rem, 1.75rem + 1vw, 2.75rem); /* 32px -> 44px */
+  /* max bumped 44px -> 48px (Faz 6.10): ssamilg.dev's reference uses a flat
+     48px for every non-hero section title — this keeps ours fluid but lands
+     on the same ceiling instead of a slightly smaller one. */
+  --text-h2: clamp(2rem, 1.67rem + 1.33vw, 3rem); /* 32px -> 48px */
   --text-h3: clamp(1.5rem, 1.375rem + 0.5vw, 1.875rem); /* 24px -> 30px */
   --text-body-lg: clamp(1.1875rem, 1.125rem + 0.25vw, 1.375rem); /* 19px -> 22px */
   --text-body: clamp(1rem, 0.96rem + 0.17vw, 1.125rem); /* 16px -> 18px */
@@ -47,11 +50,24 @@
   --text-label: clamp(0.75rem, 0.73rem + 0.08vw, 0.8125rem); /* 12px -> 13px */
   --tracking-label: 0.08em;
 
-  /* ---- Section rhythm spacing (Faz 6 foundation) ----
-     Sits well above today's largest section padding (py-32 = 8rem/128px),
-     giving later phases real breathing room to move into. Tokens only. */
-  --space-section: clamp(10rem, 8.33rem + 6.67vw, 15rem); /* 160px -> 240px */
-  --space-section-sm: clamp(6rem, 5.08rem + 3.67vw, 8.75rem); /* 96px -> 140px */
+  /* ---- Section rhythm spacing (Faz 6.10 recalibration) ----
+     The Faz 6.1 draft of these (160px -> 240px) was speculative — never
+     actually consumed by a component, and sized to sit "above" the
+     per-component py-24/md:py-32 pattern that was in real use instead.
+     Recalibrated here against ssamilg.dev's reference (studied via a
+     throwaway clone, not copied — see commit): its CV page uses a flat
+     py-20 (80px) between major sections, with p-6/mt-10 (24-40px) for the
+     sub-rhythm within one. Our sections are full-viewport (min-h-screen),
+     not a continuous-scroll CV page, so a straight port would be wrong —
+     this keeps our own already-tuned mobile endpoints (56px / 32px, from
+     the Faz 6.8 mobile pass) exactly as they were, and only pulls the
+     desktop ceiling down from 128px toward that ~80-104px "compact but
+     breathing" range. Actually consumed now (see about/experience/skills/
+     projects/contact/hero.tsx, resume/page.tsx) — one class each
+     (`py-[var(--space-section)]`), no separate md: step needed since the
+     clamp already covers both ends. */
+  --space-section: clamp(3.5rem, 2.5rem + 4vw, 6.5rem); /* 56px -> 104px */
+  --space-section-sm: clamp(2rem, 1.5rem + 2vw, 3.5rem); /* 32px -> 56px */
 }
 
 /* ---- Light theme (Faz 6.3, theming) ----
@@ -253,14 +269,16 @@
    from motion-tokens.ts, mirrored here since this is plain CSS, not a
    framer-motion component. Elements with their own `transition-colors`
    utility (e.g. link hovers) keep that shorter, unrelated timing — this
-   only fills in surfaces that don't already declare one. */
+   only fills in surfaces that don't already declare one.
+   Faz 6.10: cubic-bezier value follows EASE_PRECISE's own Faz 6.10 update
+   (see motion-tokens.ts) — keep the two in sync if either changes again. */
 @media (prefers-reduced-motion: no-preference) {
   *,
   ::before,
   ::after {
     transition-property: background-color, border-color, color, fill, stroke;
     transition-duration: 0.22s;
-    transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   }
 }
 

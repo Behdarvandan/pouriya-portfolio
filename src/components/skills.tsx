@@ -27,7 +27,7 @@ export async function Skills() {
       id="skills"
       className="scroll-mt-24 flex flex-col justify-center border-t border-edge bg-canvas md:min-h-screen"
     >
-      <div className="shell py-14 md:py-32">
+      <div className="shell py-[var(--space-section)]">
         <SectionHeading
           icon={SKILL_GROUP_ICONS.development}
           label={sectionT("label")}
@@ -39,7 +39,7 @@ export async function Skills() {
             cards on phones; md:grid-cols-2 puts them side by side. */}
         <RevealGroup
           as="div"
-          className="mt-8 grid gap-6 md:mt-14 md:grid-cols-2 md:gap-8"
+          className="mt-[var(--space-section-sm)] grid gap-6 md:grid-cols-2 md:gap-8"
         >
           {portfolio.skills.map((group) => {
             const GroupIcon = SKILL_GROUP_ICONS[group.id];

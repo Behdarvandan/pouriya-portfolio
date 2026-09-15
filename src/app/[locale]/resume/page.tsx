@@ -89,7 +89,7 @@ export default async function ResumePage({
       <Nav />
       <main id="main-content" className="flex-1">
         <section className="bg-canvas">
-          <div className="shell flex flex-col gap-4 py-24 md:py-32">
+          <div className="shell flex flex-col gap-4 py-[var(--space-section)]">
             <p className="font-mono text-xs uppercase tracking-[0.2em] text-accent">
               {t("eyebrow")}
             </p>
@@ -106,13 +106,13 @@ export default async function ResumePage({
         </section>
 
         <section className="border-t border-edge bg-panel">
-          <div className="shell py-24 md:py-32">
+          <div className="shell py-[var(--space-section)]">
             <SectionHeading
               icon={FileText}
               label={t("summaryLabel")}
               title="Lorem ipsum dolor sit amet."
             />
-            <RevealGroup as="div" className="mt-14">
+            <RevealGroup as="div" className="mt-[var(--space-section-sm)]">
               <RevealItem as="div" className="max-w-2xl text-sm leading-relaxed text-muted">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
                 do eiusmod tempor incididunt ut labore et dolore magna
@@ -124,20 +124,27 @@ export default async function ResumePage({
         </section>
 
         <section className="border-t border-edge bg-canvas">
-          <div className="shell py-24 md:py-32">
+          <div className="shell py-[var(--space-section)]">
             <SectionHeading
               icon={Briefcase}
               label={t("experienceLabel")}
               title="Consectetur adipiscing elit."
             />
-            <RevealGroup as="ol" className="mt-14">
+            {/* Faz 6.10: each entry is its own bordered bg-panel card
+                (matching skills.tsx's card treatment) instead of a divided
+                border-t/border-b list — closer to ssamilg.dev's CV page,
+                which cards every entry rather than listing them. */}
+            <RevealGroup
+              as="ol"
+              className="mt-[var(--space-section-sm)] flex flex-col gap-4 md:gap-6"
+            >
               {placeholderExperience.map((item, index) => (
                 <RevealItem
                   key={index}
                   as="li"
-                  className="grid gap-4 border-t border-edge py-8 last:border-b md:grid-cols-[200px_1fr] md:gap-8"
+                  className="flex flex-col gap-4 rounded-2xl border border-edge bg-panel p-6 md:flex-row md:gap-8 md:p-8"
                 >
-                  <span className="font-mono text-xs uppercase tracking-widest text-accent">
+                  <span className="font-mono text-xs uppercase tracking-widest text-accent md:w-[200px] md:shrink-0">
                     {item.period}
                   </span>
                   <div className="flex flex-col gap-2">
@@ -158,7 +165,7 @@ export default async function ResumePage({
         </section>
 
         <section className="border-t border-edge bg-panel">
-          <div className="shell py-24 md:py-32">
+          <div className="shell py-[var(--space-section)]">
             <SectionHeading
               icon={Code2}
               label={t("skillsLabel")}
@@ -166,7 +173,7 @@ export default async function ResumePage({
             />
             <RevealGroup
               as="div"
-              className="mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-4"
+              className="mt-[var(--space-section-sm)] grid gap-8 sm:grid-cols-2 lg:grid-cols-4"
             >
               {placeholderSkills.map((category, index) => (
                 <RevealItem key={index} as="div" className="flex flex-col gap-4">
@@ -190,20 +197,23 @@ export default async function ResumePage({
         </section>
 
         <section className="border-t border-edge bg-canvas">
-          <div className="shell py-24 md:py-32">
+          <div className="shell py-[var(--space-section)]">
             <SectionHeading
               icon={GraduationCap}
               label={t("educationLabel")}
               title="Ut labore et dolore magna aliqua."
             />
-            <RevealGroup as="ol" className="mt-14">
+            <RevealGroup
+              as="ol"
+              className="mt-[var(--space-section-sm)] flex flex-col gap-4 md:gap-6"
+            >
               {placeholderEducation.map((item, index) => (
                 <RevealItem
                   key={index}
                   as="li"
-                  className="grid gap-4 border-t border-edge py-8 last:border-b md:grid-cols-[200px_1fr] md:gap-8"
+                  className="flex flex-col gap-4 rounded-2xl border border-edge bg-panel p-6 md:flex-row md:gap-8 md:p-8"
                 >
-                  <span className="font-mono text-xs uppercase tracking-widest text-accent">
+                  <span className="font-mono text-xs uppercase tracking-widest text-accent md:w-[200px] md:shrink-0">
                     {item.period}
                   </span>
                   <div>

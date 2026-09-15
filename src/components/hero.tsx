@@ -35,8 +35,11 @@ export async function Hero() {
           icon+role+name+tagline+photo column can run taller than one
           screen, and forcing full-viewport height there just crams it;
           the indicator itself is also md:flex (hidden on mobile), so
-          reserving space for it below md was dead padding anyway. */}
-      <HeroRevealGroup className="shell relative grid grid-cols-1 items-center gap-8 py-14 pb-6 md:min-h-screen md:gap-12 md:py-24 md:pb-[14vh] lg:grid-cols-[1.15fr_0.85fr] lg:items-stretch">
+          reserving space for it below md was dead padding anyway.
+          Faz 6.10: py-14/md:py-24 collapsed into the single fluid
+          --space-section token (see globals.css) — one class covers both
+          ends now, no separate md: step needed. */}
+      <HeroRevealGroup className="shell relative grid grid-cols-1 items-center gap-8 py-[var(--space-section)] pb-6 md:min-h-screen md:gap-12 md:pb-[14vh] lg:grid-cols-[1.15fr_0.85fr] lg:items-stretch">
         <div className="flex max-w-xl flex-col gap-6">
           <HeroRevealItem>
             {/* Icon-signature: the ssamilg.dev reference's mark above the

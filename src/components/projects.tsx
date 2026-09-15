@@ -14,7 +14,7 @@ export async function Projects() {
       id="projects"
       className="scroll-mt-24 flex flex-col justify-center border-t border-edge md:min-h-screen"
     >
-      <div className="shell py-14 md:py-32">
+      <div className="shell py-[var(--space-section)]">
         <SectionHeading
           icon={FolderGit2}
           label={sectionT("label")}
@@ -28,7 +28,7 @@ export async function Projects() {
             already stack full-width, one per row, on phones. */}
         <RevealGroup
           as="div"
-          className="mt-8 grid gap-px border border-edge bg-edge [perspective:1200px] md:mt-14 md:grid-cols-2"
+          className="mt-[var(--space-section-sm)] grid gap-px border border-edge bg-edge [perspective:1200px] md:grid-cols-2"
         >
           {portfolio.projects.map((project) => (
             <ProjectCard key={project.slug} project={project} />
