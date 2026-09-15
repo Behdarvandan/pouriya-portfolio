@@ -1,12 +1,25 @@
-import { ArrowDown, ArrowUpRight, ImageIcon } from "lucide-react";
+import { Terminal } from "lucide-react";
 import { getLocale, getTranslations } from "next-intl/server";
 
 import { portfolio } from "@/config/portfolio";
 import type { Locale } from "@/i18n/routing";
-import { RotatingText } from "./rotating-text";
-import { SocialIcon } from "./icons";
-import { HeroRevealGroup, HeroRevealItem } from "./motion/hero-reveal";
+import { HeroRevealGroup, HeroRevealItem, HeroScrollIndicator } from "./motion/hero-reveal";
 
+/**
+ * Faz 6.4 rebuild: the Faz 6.3 hero (status badge, two CTAs, social row,
+ * photo slot alongside a two-column grid) tested as a "standard landing
+ * page" — busy, not distinctive. This is a pure typographic composition
+ * instead (icon-signature, role, name, one sentence, scroll cue), closer to
+ * ssamilg.dev's reference. Nothing below is deleted outright:
+ * - the status badge already duplicates portfolio.availability, which
+ *   about.tsx already renders as a definition-list row — dropped here with
+ *   no separate home needed yet; footer/contact placement is a later call.
+ * - "View projects" / "Get in touch" are redundant with the nav's own
+ *   Projects/Contact links — the hero's job is curiosity, not conversion.
+ * - the social row already duplicates contact.tsx's own social links.
+ * - the photo <figure> moved to hero-photo-slot.tsx, unused for now,
+ *   ready for Faz 6.5 to place wherever the photo reveal ends up living.
+ */
 export async function Hero() {
   const locale = (await getLocale()) as Locale;
   const t = await getTranslations("Hero");
@@ -27,21 +40,33 @@ export async function Hero() {
         className="duotone-wash pointer-events-none absolute inset-0"
         aria-hidden="true"
       />
+      {/* Faz 6.4: faint wash centered on the content block below, so its
+          off-center position doesn't read as empty space (see globals.css). */}
+      <div
+        className="hero-focus-glow pointer-events-none absolute inset-0"
+        aria-hidden="true"
+      />
 
-      <HeroRevealGroup className="shell relative grid min-h-[calc(100vh-4rem)] grid-cols-1 items-center gap-16 py-24 lg:grid-cols-[1.15fr_0.85fr] lg:items-stretch lg:gap-12">
-        <div className="flex min-w-0 flex-col gap-8">
-          <HeroRevealItem className="flex items-center gap-3">
-            <span className="relative flex h-2 w-2">
-              {/* The page's one rare-accent (amber) use: this status dot,
-                  in place of a hardcoded emerald so it also reads as a
-                  distinct signal from --accent (see globals.css Faz 6.1
-                  usage rule). */}
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent-warm opacity-75" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-accent-warm" />
-            </span>
-            <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted">
-              {portfolio.availability[locale]}
-            </p>
+      <HeroRevealGroup className="shell relative flex min-h-[calc(100vh-4rem)] flex-col justify-center pb-[10vh] sm:pb-[14vh]">
+        {/* Deliberately not dead-centered (the ssamilg.dev reference read as
+            "too empty" to the user): --ms shifts the block right of the
+            shell's edge without reaching true center, and the logical
+            margin-inline-start mirrors under dir="rtl" (fa) automatically —
+            it starts from the right there, not the left. Mobile stays at
+            the shell's plain edge; the offset only reads as "off-center"
+            once there's enough width for center-vs-edge to be a real choice. */}
+        <div className="flex max-w-xl flex-col gap-6 sm:ms-[6%] md:ms-[10%] lg:ms-[13%]">
+          <HeroRevealItem>
+            {/* Icon-signature: the ssamilg.dev reference's mark above the
+                name, adapted here. Terminal over Code2/Sparkles because it
+                names the actual craft (shipping from a terminal) rather than
+                gesturing at "developer" in the abstract, and matches the
+                reference's own terminal-glyph detail almost literally. Plain
+                --ink box (not --accent-warm) — that rare-accent budget is
+                spent elsewhere; the icon glyph itself carries --accent. */}
+            <div className="inline-flex h-12 w-12 items-center justify-center rounded-xl border border-edge">
+              <Terminal className="h-5 w-5 text-accent" strokeWidth={1.5} aria-hidden="true" />
+            </div>
           </HeroRevealItem>
 
           <HeroRevealItem>
@@ -56,76 +81,21 @@ export async function Hero() {
             </h1>
           </HeroRevealItem>
 
-          <HeroRevealItem className="mt-6">
-            <p className="max-w-xl text-body-lg leading-relaxed text-muted">
-              <RotatingText
-                phrases={portfolio.taglines.map((tagline) => tagline[locale])}
-              />
+          <HeroRevealItem className="mt-4">
+            {/* One sentence, not the full RotatingText cycle — a rotating
+                claim competes with "quiet" for attention. taglines[0] reads
+                as the most complete standalone sentence of the set. */}
+            <p className="max-w-lg text-body-lg leading-relaxed text-muted">
+              {portfolio.taglines[0][locale]}
             </p>
-          </HeroRevealItem>
-
-          <HeroRevealItem className="flex flex-wrap items-center gap-4">
-            <a
-              href="#projects"
-              className="group inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3 text-sm font-medium text-on-accent transition-transform hover:-translate-y-0.5"
-            >
-              {t("viewProjects")}
-              <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-            </a>
-            <a
-              href="#contact"
-              className="inline-flex items-center gap-2 rounded-full border border-edge px-6 py-3 text-sm font-medium text-ink transition-colors hover:border-accent hover:text-accent"
-            >
-              {t("getInTouch")}
-            </a>
-          </HeroRevealItem>
-
-          <HeroRevealItem className="flex items-center gap-6">
-            {portfolio.socials.map((social) => (
-              <a
-                key={social.title}
-                href={social.href}
-                target={social.icon === "mail" ? undefined : "_blank"}
-                rel={social.icon === "mail" ? undefined : "noopener noreferrer"}
-                className="inline-flex items-center gap-2 text-sm text-muted transition-colors hover:text-ink"
-              >
-                <SocialIcon name={social.icon} className="h-4 w-4" />
-                {social.title}
-              </a>
-            ))}
           </HeroRevealItem>
         </div>
 
-        <HeroRevealItem slow className="justify-self-center lg:justify-self-end">
-          {/* Portrait slot: fixed 4:5 aspect ratio so the layout holds once a
-              real photo lands here — swap in an <Image> filling this
-              <figure> and nothing around it needs to change.
-              Mobile (stacked): width-driven, aspect-ratio sets the height.
-              lg (side-by-side, row is lg:items-stretch): height-driven
-              instead — h-full matches the text column's own height (the
-              row's height, since it's taller), width is derived from that
-              via the same 4:5 ratio, so the photo fills the row instead of
-              leaving dead space below a shorter, width-driven box. */}
-          <figure className="relative aspect-[4/5] w-full max-w-sm overflow-hidden rounded-3xl border border-edge bg-panel lg:h-full lg:w-auto lg:max-w-full">
-            <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 text-faint">
-              <ImageIcon className="h-10 w-10" strokeWidth={1.25} aria-hidden="true" />
-              <span className="font-mono text-label uppercase tracking-label">
-                Photo
-              </span>
-            </div>
-          </figure>
-        </HeroRevealItem>
-
-        <a
+        <HeroScrollIndicator
           href="#metrics"
-          className="absolute bottom-8 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-2 text-faint transition-colors hover:text-ink md:flex"
-          aria-label={t("scrollDown")}
-        >
-          <span className="font-mono text-[10px] uppercase tracking-[0.3em]">
-            {t("scrollDown")}
-          </span>
-          <ArrowDown className="h-4 w-4 animate-bounce" />
-        </a>
+          label={t("scrollDown")}
+          className="absolute bottom-8 left-1/2 hidden -translate-x-1/2 md:flex"
+        />
       </HeroRevealGroup>
     </section>
   );

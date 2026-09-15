@@ -1,7 +1,8 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { motion, type Variants } from "framer-motion";
+import { ArrowDown } from "lucide-react";
+import { motion, useReducedMotion, type Variants } from "framer-motion";
 
 import { useMotionTokens } from "@/lib/motion-tokens";
 
@@ -45,7 +46,7 @@ export function HeroRevealItem({
   children,
 }: {
   className?: string;
-  /** Heavier elements (the photo slot) settle in on DURATION_SLOW; text uses DURATION_BASE. */
+  /** Heavier/later elements can settle in on DURATION_SLOW instead of the default DURATION_BASE. */
   slow?: boolean;
   children: ReactNode;
 }) {
@@ -64,5 +65,44 @@ export function HeroRevealItem({
     <motion.div className={className} variants={itemVariants}>
       {children}
     </motion.div>
+  );
+}
+
+export function HeroScrollIndicator({
+  href,
+  label,
+  className,
+}: {
+  href: string;
+  label: string;
+  className?: string;
+}) {
+  const { ease, slow } = useMotionTokens();
+  // useMotionTokens() already collapses fast/base/slow toward ~0 under
+  // reduced motion, which is enough for a one-shot transition — but not for
+  // an *infinitely repeating* one: a near-zero duration looping forever
+  // would just vibrate in place instead of stopping. So the repeat itself
+  // is gated on this raw flag, not on the resolved duration.
+  const prefersReducedMotion = useReducedMotion();
+
+  return (
+    <a
+      href={href}
+      aria-label={label}
+      className={`inline-flex flex-col items-center gap-2 text-faint transition-colors hover:text-ink ${className ?? ""}`}
+    >
+      <span className="font-mono text-[10px] uppercase tracking-[0.3em]">{label}</span>
+      <motion.span
+        className="flex"
+        animate={prefersReducedMotion ? undefined : { y: [0, 6, 0] }}
+        transition={
+          prefersReducedMotion
+            ? undefined
+            : { duration: slow, ease, repeat: Infinity, repeatType: "loop" }
+        }
+      >
+        <ArrowDown className="h-4 w-4" />
+      </motion.span>
+    </a>
   );
 }

@@ -204,6 +204,21 @@
     );
 }
 
+/* Faz 6.4: the rebuilt hero deliberately sits off-center (not the ssamilg.dev
+   reference's dead-centered composition, which the user read as "too
+   empty") — this very faint wash sits behind that off-center content block
+   so the surrounding space reads as considered, not vacant. Additive to
+   duotone-wash above, not a replacement: same --accent hue, far lower
+   opacity (4%, vs. duotone-wash's 16%), and centered on the content block's
+   position rather than duotone-wash's fixed corner-blob placement. */
+.hero-focus-glow {
+  background: radial-gradient(
+    ellipse 55% 45% at 34% 42%,
+    color-mix(in srgb, var(--accent) 4%, transparent),
+    transparent 72%
+  );
+}
+
 @media (min-width: 640px) {
   .shell {
     padding-inline: 2rem;
