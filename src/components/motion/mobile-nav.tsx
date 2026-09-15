@@ -16,6 +16,7 @@ import { Menu, X } from "lucide-react";
 import { rtlLocales, type Locale } from "@/i18n/routing";
 import { useMotionTokens } from "@/lib/motion-tokens";
 import { ResumeNavLink } from "@/components/resume-nav-link";
+import { HomeAwareLink } from "@/components/nav-home-link";
 import { ThemeToggle } from "@/components/theme-toggle";
 
 const FOCUSABLE_SELECTOR =
@@ -196,14 +197,14 @@ export function MobileNav({
 
                     <nav aria-label="Primary" className="flex flex-col gap-6">
                       {links.map((link) => (
-                        <a
+                        <HomeAwareLink
                           key={link.href}
                           href={link.href}
                           onClick={close}
                           className="font-mono text-sm uppercase tracking-widest text-muted transition-colors hover:text-ink"
                         >
                           {link.label}
-                        </a>
+                        </HomeAwareLink>
                       ))}
                       <ResumeNavLink
                         href={resumeHref}
