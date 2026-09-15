@@ -30,8 +30,9 @@ export async function Contact() {
         className="shell flex flex-col items-start gap-10 py-24 md:flex-row md:items-end md:justify-between md:py-32"
       >
         <RevealItem as="div" className="flex max-w-2xl flex-col gap-6">
-          <p className="font-mono text-xs uppercase tracking-[0.2em] text-accent">
-            05 — {sectionT("label")}
+          <p className="flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-accent">
+            <Mail className="h-4 w-4" strokeWidth={1.75} aria-hidden="true" />
+            {sectionT("label")}
           </p>
           <h2 className="font-display text-4xl font-medium leading-tight tracking-tight text-ink sm:text-5xl">
             {sectionT("title")}

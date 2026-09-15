@@ -1,3 +1,4 @@
+import { FolderGit2 } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 
 import { portfolio } from "@/config/portfolio";
@@ -15,7 +16,7 @@ export async function Projects() {
     >
       <div className="shell py-24 md:py-32">
         <SectionHeading
-          number="04"
+          icon={FolderGit2}
           label={sectionT("label")}
           title={sectionT("title")}
           description={sectionT("description")}

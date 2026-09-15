@@ -1,3 +1,4 @@
+import { Code2 } from "lucide-react";
 import { getLocale, getTranslations } from "next-intl/server";
 
 import { portfolio } from "@/config/portfolio";
@@ -16,7 +17,7 @@ export async function Skills() {
     >
       <div className="shell py-24 md:py-32">
         <SectionHeading
-          number="03"
+          icon={Code2}
           label={sectionT("label")}
           title={sectionT("title")}
           description={sectionT("description")}

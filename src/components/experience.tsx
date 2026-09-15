@@ -1,3 +1,4 @@
+import { Briefcase } from "lucide-react";
 import { getLocale, getTranslations } from "next-intl/server";
 
 import { portfolio } from "@/config/portfolio";
@@ -16,7 +17,7 @@ export async function Experience() {
     >
       <div className="shell py-24 md:py-32">
         <SectionHeading
-          number="02"
+          icon={Briefcase}
           label={sectionT("label")}
           title={sectionT("title")}
         />

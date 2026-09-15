@@ -1,3 +1,4 @@
+import { Briefcase, Code2, FileText, GraduationCap } from "lucide-react";
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 
@@ -107,7 +108,7 @@ export default async function ResumePage({
         <section className="border-t border-edge bg-panel">
           <div className="shell py-24 md:py-32">
             <SectionHeading
-              number="01"
+              icon={FileText}
               label={t("summaryLabel")}
               title="Lorem ipsum dolor sit amet."
             />
@@ -125,7 +126,7 @@ export default async function ResumePage({
         <section className="border-t border-edge bg-canvas">
           <div className="shell py-24 md:py-32">
             <SectionHeading
-              number="02"
+              icon={Briefcase}
               label={t("experienceLabel")}
               title="Consectetur adipiscing elit."
             />
@@ -159,7 +160,7 @@ export default async function ResumePage({
         <section className="border-t border-edge bg-panel">
           <div className="shell py-24 md:py-32">
             <SectionHeading
-              number="03"
+              icon={Code2}
               label={t("skillsLabel")}
               title="Sed do eiusmod tempor incididunt."
             />
@@ -191,7 +192,7 @@ export default async function ResumePage({
         <section className="border-t border-edge bg-canvas">
           <div className="shell py-24 md:py-32">
             <SectionHeading
-              number="04"
+              icon={GraduationCap}
               label={t("educationLabel")}
               title="Ut labore et dolore magna aliqua."
             />

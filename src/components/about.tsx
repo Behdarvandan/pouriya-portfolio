@@ -1,3 +1,4 @@
+import { User } from "lucide-react";
 import { getLocale, getTranslations } from "next-intl/server";
 
 import { portfolio } from "@/config/portfolio";
@@ -21,7 +22,7 @@ export async function About() {
       >
         <RevealItem as="div">
           <SectionHeading
-            number="01"
+            icon={User}
             label={sectionT("label")}
             title={sectionT("title")}
           />
