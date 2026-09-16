@@ -26,17 +26,35 @@
      ~1.4 editorial ratio (wider than a musical major-third) so headline
      sizes read as deliberately oversized rather than incrementally bigger.
      Tokens only — nothing below consumes them yet. */
-  /* --text-display's reference range is wider than the rest (400-6000, not
-     400-1600). Faz 6.3 hit two overflow rounds against the hero's actual
-     (unbreakable) surname: 1600px reached ~93% of 140px already at an
-     ordinary 1440px laptop width, and a first widening to 2800px still left
-     only single-digit-percent margin there. This range keeps the same
-     64px/140px endpoints but reaches them far more gradually, landing at
-     ~78px at the 1440px reference — a ~15% width margin under the longest
-     word at hero.tsx's current grid proportions (verified empirically, not
-     just computed, since font metrics vary by browser/OS). Revisit the
-     margin if the grid ratio in hero.tsx changes. */
-  --text-display: clamp(4rem, 3.6607rem + 1.3571vw, 8.75rem); /* 64px -> 140px */
+  /* --text-display, Faz 6.11 rewrite: the Faz 6.3/6.4 versions of this
+     token (most recently clamp(4rem, ..., 8.75rem), 64px -> 140px over a
+     400-6000px reference range) never actually had a safe margin — they
+     only ever got EMPIRICALLY checked at one width (1440px) each time.
+     Measuring properly this time: hero.tsx's name column is capped at
+     max-w-xl (576px) from 640px viewport up (below that, shell's own
+     inline padding is the binding constraint instead), and "Behdarvandan"
+     — the longer of the two words, and the one that actually decides this
+     — renders at 6.7023px of width per 1px of font-size in Fraunces/500/
+     tracking-tight (measured directly in a real browser: a detached span
+     cloning the h1's computed font-family/weight/letter-spacing, sized to
+     100px, then read back via getBoundingClientRect — not estimated).
+     That number turns "does it fit" into a straight line, and checking it
+     against the container width at every relevant viewport (320, 375,
+     500, 640, 768, 900, 1024 — including the dip right at the lg
+     breakpoint, where the two-column grid math briefly narrows the column
+     below its own 576px cap before it recovers — 1114, 1440, 1920) is
+     what the endpoints below solve for: >= ~11% clearance at the extreme
+     mobile floor, >= ~18% everywhere else, including that 1024px dip.
+     The previous version's ceiling (140px) was never reachable at any
+     realistic width anyway (only ~78px actually rendered at 1440px,
+     ~84.6px at 1920px, both already inside single-digit margin against
+     576px) — this instead ramps to its real ceiling by 640px and holds
+     it flat forever after, because the container itself never grows past
+     576px no matter how wide the viewport gets, so there's nothing to
+     keep scaling toward. Re-measure (the same detached-span technique
+     above) if the name, font, weight, tracking, or hero grid proportions
+     ever change — none of this transfers to a different word. */
+  --text-display: clamp(2.25rem, 0.5rem + 8.75vw, 4rem); /* 36px -> 64px, ramp complete by 640px viewport */
   --text-h1: clamp(2.75rem, 2.33rem + 1.67vw, 4rem); /* 44px -> 64px */
   /* max bumped 44px -> 48px (Faz 6.10): ssamilg.dev's reference uses a flat
      48px for every non-hero section title — this keeps ours fluid but lands

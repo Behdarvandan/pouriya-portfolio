@@ -42,6 +42,19 @@ type SectionId = (typeof SECTION_IDS)[number];
  *    translate-x slide, since translate-x is a physical direction and this
  *    codebase's other RTL-sensitive spots (fa locale) use logical
  *    properties throughout — a scale reveal has no direction to get wrong.
+ *
+ * Faz 6.12: `:hover` alone leaves the tooltip permanently invisible on
+ * touch — there's no pointer sitting over a dot to trigger it, tap or not.
+ * Gating on the *input capability* (`(hover: none)`, not a screen-width
+ * breakpoint) rather than adding a tap handler: a screen-width check would
+ * mislabel a large touchscreen (e.g. a tablet above whatever breakpoint)
+ * as "desktop", and a tap-to-reveal handler would turn the dot's first tap
+ * into "show tooltip" instead of "navigate", delaying the one thing a tap
+ * is actually for. `(hover: none)` asks the right question directly — can
+ * this pointer hover at all — and, only for the currently-active dot,
+ * forces the label permanently visible there instead of waiting for a
+ * hover that will never come. Inactive dots stay unlabeled on touch, same
+ * as the reference's hover-only-on-desktop intent.
  */
 export function ScrollDots() {
   const { scrollY } = useScroll();
@@ -93,7 +106,11 @@ export function ScrollDots() {
                     carries this to screen readers. */}
                 <span
                   aria-hidden="true"
-                  className="pointer-events-none absolute end-full me-3 origin-[100%_center] scale-90 whitespace-nowrap rounded-md border border-edge bg-panel px-2.5 py-1 font-mono text-[11px] uppercase tracking-widest text-ink opacity-0 shadow-sm transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] group-hover:scale-100 group-hover:opacity-100"
+                  className={`pointer-events-none absolute end-full me-3 origin-[100%_center] scale-90 whitespace-nowrap rounded-md border border-edge bg-panel px-2.5 py-1 font-mono text-[11px] uppercase tracking-widest text-ink opacity-0 shadow-sm transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] group-hover:scale-100 group-hover:opacity-100 ${
+                    isActive
+                      ? "[@media(hover:none)]:scale-100 [@media(hover:none)]:opacity-100"
+                      : ""
+                  }`}
                 >
                   {labels[id]}
                 </span>

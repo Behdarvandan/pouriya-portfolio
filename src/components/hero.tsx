@@ -21,6 +21,15 @@ export async function Hero() {
   const locale = (await getLocale()) as Locale;
   const t = await getTranslations("Hero");
 
+  // Faz 6.11: split so each name part is its own block-level line — with
+  // --text-display's clamp() now safely fit to the longer word (see
+  // globals.css), the layout no longer needs "wherever the browser
+  // happens to wrap it" (text-balance's job); it needs a fixed, known
+  // 2-line shape so overflow-wrap/word-break below have exactly one word
+  // each to protect, never a mid-word break point to consider.
+  const [firstName, ...restName] = portfolio.name.split(" ");
+  const surname = restName.join(" ");
+
   return (
     <section id="top" className="relative overflow-hidden">
       {/* Faz 6.4: faint wash centered on the content block below, so its
@@ -61,8 +70,9 @@ export async function Hero() {
           </HeroRevealItem>
 
           <HeroRevealItem>
-            <h1 className="text-balance font-display text-display font-medium leading-[0.95] tracking-tight text-ink [overflow-wrap:normal]">
-              {portfolio.name}
+            <h1 className="font-display text-display font-medium leading-[0.95] tracking-tight text-ink [overflow-wrap:normal] [word-break:keep-all]">
+              <span className="block">{firstName}</span>
+              <span className="block">{surname}</span>
             </h1>
           </HeroRevealItem>
 
